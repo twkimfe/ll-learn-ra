@@ -9,7 +9,7 @@
 <body>
   <div id="todo">
     <header>
-      <h1>Todo List - 03 수정 :)</h1>
+      <h1>Todo List - 04 삭제 :)</h1>
       <p>파일 경로: <span id="filepath"></span></p>
     </header>
     <div id="main">
@@ -191,9 +191,10 @@
     function deleteItem(num){
       console.log(num, '할일 삭제');
       // 데이터 갱신, itemList에서 num에 해당하는 item 삭제
-
+      const index = itemList.findIndex(item => item.num === num);
+      itemList.splice(index, 1);
       // 화면 갱신, 화면에서 num에 해당하는 item 제거
-
+      document.querySelector(`.todolist > li[data-num="${num}"]`).remove();
     }
   </script>
 </body>

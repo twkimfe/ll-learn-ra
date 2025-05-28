@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counter</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="module">
+    import Reaction from './reaction.js';
+
+    // 헤더 컴포넌트
+    function Header(){
+      return (
+        Reaction.createElement('header', null, 
+          Reaction.createElement('h1', null, 'Counter - 06 UI 구성 요소를 각각의 함수로 분리(컴포넌트 만들기)'), 
+          Reaction.createElement('p', null, '파일 경로: ', 
+            Reaction.createElement('span', { id: 'filepath' }, `ch${document.URL.split('/ch')[1]}index.html`)))
+      );
+    }
+
+    // Counter 컴포넌트
+    function Counter(){
+      let count = 0;
+
+      // 카운터 감소
+      const handleDown = () => {
+        // 데이터 갱신, count 값 감소
+        count--;
+        // 화면 갱신, count 값 화면에 표시
+        document.querySelector('#counter > span').textContent = count;
+      };
+
+      // 카운터 증가
+      const handleUp = () => {
+        // 데이터 갱신, count 값 증가
+        count++;
+        // 화면 갱신, count 값 화면에 표시
+        document.querySelector('#counter > span').textContent = count;
+      };
+
+      // 카운터 초기화
+      const handleReset = event => {
+        // 데이터 갱신, count 값 초기화
+        count = 0;
+        // 화면 갱신, count 값 화면에 표시
+        document.querySelector('#counter > span').textContent = count;
+      };
+
+      return (
+        Reaction.createElement('div', { id: 'counter' }, 
+          Reaction.createElement('button', { type: 'button', onclick: handleDown }, '-'), 
+          Reaction.createElement('button', { type: 'button', onclick: (event) => handleReset(event) }, 0), 
+          Reaction.createElement('button', { type: 'button', onclick: handleUp }, '+'), 
+          Reaction.createElement('span', null, 0))
+      );
+    }
+
+    // App 컴포넌트(어플리케이션의 시작점)
+    function App(){
+      return (
+        Reaction.createElement('div', { id: 'app' }, Header, Counter)
+      );
+    }
+
+    // root 요소에 app 추가
+    Reaction.createRoot(document.getElementById('root')).render(App);
+  </script>
+
+</body>
+</html>
