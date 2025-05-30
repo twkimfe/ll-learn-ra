@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Todo List App</title>
+  <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
@@ -49,11 +50,25 @@
     </footer>
   </div>
 
-  <script type="text/javascript">
+  <script>
     document.querySelector('#filepath').textContent = `ch${document.URL.split('/ch')[1]}index.html`;
+  </script>
+
+  <script type="text/babel">
+    /*
+          ┌───────── App ──────────┐
+          │           │            │
+        Header       Todo        Footer
+                      │
+                  ┌───┴────┐
+            TodoInput   TodoList
+                           │
+                        TodoItem
+    */
+
 
     // 샘플 목록
-    const itemList = [
+    const initItemList = [
       { num: 1, title: '자바스크립트 공부', done: true },
       { num: 2, title: 'JS 프로젝트', done: true },
       { num: 3, title: 'React 공부', done: false },
