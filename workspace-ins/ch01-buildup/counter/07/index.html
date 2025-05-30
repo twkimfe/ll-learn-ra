@@ -27,7 +27,11 @@
       console.log('\tCounter 호출됨');
       // let count = 0;
 
-      const [count, setCount] = Reaction.useState(0);
+      // const state = Reaction.useState(0);
+      // const count = state[0];
+      // const setCount = state[1];
+
+      const [ count, setCount ] = Reaction.useState(0);
 
       // 카운터 감소
       const handleDown = () => {

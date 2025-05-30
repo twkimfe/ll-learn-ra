@@ -41,24 +41,42 @@
     }
 
     function TodoInput(props){
+      // 추가 버튼 클릭 이벤트 핸들러
+      const handleAdd = () => {
+        console.log('추가 버튼 클릭');
+        const inputElem = document.querySelector('.todoinput > input');
+        if(inputElem.value.trim() !== ''){
+          props.addItem(inputElem.value.trim());
+          inputElem.value = '';
+          inputElem.focus();
+        }
+      };
+
+      // 엔터 이벤트 핸들러
+      const handleAddKeydown = (event) => {
+        console.log('keydown', event);
+        if(event.key === 'Enter') handleAdd();
+      };
+
       return (
         Reaction.createElement('div', { class: 'todoinput' },
-          Reaction.createElement('input', { type: 'text', autofocus: true, onkeydown: (event) => props.handleAddKeydown(event) }),
-          Reaction.createElement('button', { type: 'button', onclick: props.handleAdd }, '추가'))
+          Reaction.createElement('input', { type: 'text', autofocus: true, onkeydown: (event) => handleAddKeydown(event) }),
+          Reaction.createElement('button', { type: 'button', onclick: handleAdd }, '추가'))
       );
     }
 
-    function TodoItem({ item }){
+    function TodoItem({ item, toggleDone, deleteItem }){
       return (
         Reaction.createElement('li', { 'data-num': item.num },
           Reaction.createElement('span', null, item.num),
-          Reaction.createElement('span', null, Reaction.createElement('s', null, item.title)),
-          Reaction.createElement('button', { type: 'button' }, '삭제'))
+          Reaction.createElement('span', { onclick: () => toggleDone(item.num) }, 
+            item.done ? Reaction.createElement('s', null, item.title) : item.title),
+          Reaction.createElement('button', { type: 'button', onclick: () => deleteItem(item.num) }, '삭제'))
       );
     }
 
-    function TodoList({ itemList }){
-      const items = itemList.map(item => TodoItem({ item }));
+    function TodoList({ itemList, toggleDone, deleteItem }){
+      const items = itemList.map(item => TodoItem({ item, toggleDone, deleteItem }));
       return (
         Reaction.createElement('ul', { class: 'todolist' }, items)
       );
@@ -86,66 +104,32 @@
 
       const [itemList, setItemList] = Reaction.useState(initItemList);
 
-      let lastNum = itemList.length;
-
       // 할일 추가
       function addItem(title){
         console.log('할일 추가');
-        const newItemList = [ ...itemList ];
-        // 데이터 갱신, itemList에 item 추가
-        // num, title, done 속성을 가진 item 객체 생성
-        const item = {
-          num: ++lastNum,
-          title,
-          done: false,
-        };
-        newItemList.push(item);
-
-        setItemList(newItemList);
+        const item = { num: itemList[itemList.length-1]?.num + 1 || 1, title, done: false };
+        setItemList([ ...itemList, item ]);
       }
-
-      // 추가 버튼 클릭 이벤트 핸들러
-      const handleAdd = () => {
-        console.log('추가 버튼 클릭');
-        const inputElem = document.querySelector('.todoinput > input');
-        if(inputElem.value.trim() !== ''){
-          addItem(inputElem.value.trim());
-          inputElem.value = '';
-          inputElem.focus();
-        }
-      };
-
-      // 엔터 이벤트 핸들러
-      const handleAddKeydown = (event) => {
-        console.log('keydown', event);
-        if(event.key === 'Enter') handleAdd();
-      };
 
       // 완료/미완료 처리
       function toggleDone(num){
         console.log(num, '완료/미완료');
-        // 데이터 갱신, itemList에서 num에 해당하는 item의 done 값을 수정
-        const selectedItem = itemList.find(item => item.num === num);
-        // item의 done 값을 수정
-        selectedItem.done = !selectedItem.done;
+        const newItemList = itemList.map(item => item.num === num ? { ...item, done: !item.done } : item);
 
-        render(); // 데이터를 기반으로 화면 갱신
+        setItemList(newItemList);
       }
 
       // 할일 삭제
       function deleteItem(num){
         console.log(num, '할일 삭제');
-        // 데이터 갱신, itemList에서 num에 해당하는 item 삭제
-        const index = itemList.findIndex(item => item.num === num);
-        itemList.splice(index, 1);
-        
-        render(); // 데이터를 기반으로 화면 갱신
+        const newItemList = itemList.filter(item => item.num !== num);
+        setItemList(newItemList);
       }
 
       return (
         Reaction.createElement('div', { id: 'todo' }, 
           Header,
-          Todo({ itemList, addItem, toggleDone, deleteItem, handleAdd, handleAddKeydown }),
+          Todo({ itemList, addItem, toggleDone, deleteItem }),
           Footer
         )
       );
