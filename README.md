@@ -158,7 +158,7 @@
     - 🧑‍💻 [01 목록 조회](./workspace-ins/ch01-buildup/todolist/01/index.html)
       + workspace/ch01-buildup/todolist/sample 폴더 복사해서 01 폴더 생성
     - 🧑‍💻 [02 등록](./workspace-ins/ch01-buildup/todolist/02/index.html)
-      + workspace/ch01-buildup/todolist/01 폴더 todolist/복사해서 02 폴더 생성
+      + workspace/ch01-buildup/todolist/01 폴더 복사해서 02 폴더 생성
     - 🧑‍💻 [03 수정](./workspace-ins/ch01-buildup/todolist/03/index.html)
       + workspace/ch01-buildup/todolist/02 폴더 복사해서 03 폴더 생성
 
