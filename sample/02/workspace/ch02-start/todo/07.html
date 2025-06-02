@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Todo List</title>
+  <link rel="icon" href="/assets/favicon.ico">
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function App(){
+      return (
+        <div id="app">
+          <div>
+            <div>
+              <h1>06 Simple Todo List - React</h1>
+              <hr />
+            </div>
+            <ul className="todolist">
+              <li>React 공부 - 진행중</li>
+              <li>Javascript 프로젝트 - 완료</li>
+              <li>Javascript 공부 - 완료</li>
+            </ul>
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+
+</html>
