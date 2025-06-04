@@ -15,21 +15,34 @@
   <div id="root"></div>
 
   <script type="text/babel">
+    // Title, TodoList의 부모 컴포넌트
     function App(){
       return (
         <div id="app">
           <div>
-            <div>
-              <h1>06 Simple Todo List - React</h1>
-              <hr />
-            </div>
-            <ul className="todolist">
-              <li>React 공부 - 진행중</li>
-              <li>Javascript 프로젝트 - 완료</li>
-              <li>Javascript 공부 - 완료</li>
-            </ul>
+            <Title />
+            <TodoList />
           </div>
         </div>
+      );
+    }
+
+    function Title(){
+      return (
+        <div>
+          <h1>07 Simple Todo List - React Component</h1>
+          <hr />
+        </div>
+      );
+    }
+
+    function TodoList(){
+      return (
+        <ul className="todolist">
+          <li>React 공부 - 진행중</li>
+          <li>Javascript 프로젝트 - 완료</li>
+          <li>Javascript 공부 - 완료</li>
+        </ul>
       );
     }
 
