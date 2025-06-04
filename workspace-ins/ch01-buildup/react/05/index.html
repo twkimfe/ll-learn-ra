@@ -107,6 +107,7 @@
         </div>
       );
     }
+    
     function TodoInput({ addItem }){
       // 추가 버튼 클릭 이벤트 핸들러
       const handleAdd = () => {
@@ -132,6 +133,7 @@
         </div>
       );
     }
+    
     function TodoList({ itemList, toggleDone, deleteItem }){
       const list = itemList.map((item) => {
         return <TodoItem key={ item.num } item={ item } toggleDone={ toggleDone } deleteItem={ deleteItem } />;
@@ -142,6 +144,7 @@
         </ul>
       );
     }
+    
     function TodoItem({ item, toggleDone, deleteItem }){
       console.log(item.num, '리렌더링.');
       return (
