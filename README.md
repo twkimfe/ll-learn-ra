@@ -167,74 +167,125 @@
 * 02 SPA(Single Page Application)
   * Todo List 작성(HTML + vanillaJS)
     - 🧑‍💻 [04 삭제, 완성](./workspace-ins/ch01-buildup/todolist/04/index.html)
-      - workspace/ch01-buildup/todolist/03 폴더 복사해서 04 폴더 생성
+      + workspace/ch01-buildup/todolist/03 폴더 복사해서 04 폴더 생성
     - 🧑‍💻 [05 데이터를 기반으로 화면 리렌더링](./workspace-ins/ch01-buildup/todolist/05/index.html)
-      - workspace/ch01-buildup/todolist/04 폴더 복사해서 05 폴더 생성
+      + workspace/ch01-buildup/todolist/04 폴더 복사해서 05 폴더 생성
   * Counter(라이브리리 개발) 작성
     - 🧑‍💻 [01 HTML + JS](./workspace-ins/ch01-buildup/counter/01/index.html)
-      - workspace/ch01-buildup/counter/sample 폴더 복사해서 01 폴더 생성
+      + workspace/ch01-buildup/counter/sample 폴더 복사해서 01 폴더 생성
     - 🧑‍💻 [02 HTML 대신 JS로 UI 구성](./workspace-ins/ch01-buildup/counter/02/index.html)
-      - workspace/ch01-buildup/counter/01 폴더 복사해서 02 폴더 생성
+      + workspace/ch01-buildup/counter/01 폴더 복사해서 02 폴더 생성
 
 #### 오후(3시간)
 * 02 SPA(Single Page Application)
   * Counter(라이브리리 개발) 작성
     - 🧑‍💻 [03 createElement() 함수 만들기](./workspace-ins/ch01-buildup/counter/03/index.html)
-      - workspace/ch01-buildup/counter/02 폴더 복사해서 03 폴더 생성
+      + workspace/ch01-buildup/counter/02 폴더 복사해서 03 폴더 생성
     - 🧑‍💻 [04 createElement() 함수 하나로 통합](./workspace-ins/ch01-buildup/counter/04/index.html)
-      - workspace/ch01-buildup/counter/03 폴더 복사해서 04 폴더 생성
+      + workspace/ch01-buildup/counter/03 폴더 복사해서 04 폴더 생성
     - 🧑‍💻 [05 createRoot(), render() 함수 만들기](./workspace-ins/ch01-buildup/counter/05/index.html)
-      - workspace/ch01-buildup/counter/04 폴더 복사해서 05 폴더 생성
+      + workspace/ch01-buildup/counter/04 폴더 복사해서 05 폴더 생성
     - 🧑‍💻 [06 UI 구성 요소별 각각의 함수로 분리(컴포넌트로 만들기)](./workspace-ins/ch01-buildup/counter/06/index.html)
-      - workspace/ch01-buildup/counter/05 폴더 복사해서 06 폴더 생성
+      + workspace/ch01-buildup/counter/05 폴더 복사해서 06 폴더 생성
 
 ### 3일차(2025.05.29 목)
 #### 오전(3시간)
 * 02 SPA(Single Page Application)
   * Counter(라이브리리 개발) 작성
     - 🧑‍💻 [07 상태(데이터) 변경시 자동으로 UI 리렌더링](./workspace-ins/ch01-buildup/counter/07/index.html)
-      - workspace/ch01-buildup/counter/06 폴더 복사해서 07 폴더 생성
+      + workspace/ch01-buildup/counter/06 폴더 복사해서 07 폴더 생성
 
 #### 오후(4시간)
 * 02 SPA(Single Page Application)
   * Todo List 작성(vanillaJS + Lib)
     - 🧑‍💻 [06 Reaction.createElement() 사용해서 UI 구성](./workspace-ins/ch01-buildup/todolist/06/index.html)
     - 🧑‍💻 [07 UI 구성 요소별 각각의 함수로 분리(컴포넌트로 만들기)](./workspace-ins/ch01-buildup/todolist/07/index.html)
-      - workspace/ch01-buildup/todolist/06 폴더 복사해서 07 폴더 생성 
+      + workspace/ch01-buildup/todolist/06 폴더 복사해서 07 폴더 생성 
 
 ### 4일차(2025.05.30 금)
 #### 오전(3시간)
 * 02 SPA(Single Page Application)
   * Todo List 작성(vanillaJS + Lib)
     - 🧑‍💻 [08 상태(데이터) 변경시 화면 리렌더링](./workspace-ins/ch01-buildup/todolist/08/index.html)
-      - workspace/ch01-buildup/todolist/07 폴더 복사해서 08 폴더 생성
+      + workspace/ch01-buildup/todolist/07 폴더 복사해서 08 폴더 생성
 
 #### 오후(3시간)
 * 03 React
   - 🧑‍💻 [01 Counter - React로 구현(React.createElement)](./workspace-ins/ch01-buildup/react/01/index.html)
-    - workspace/ch01-buildup/react/sample/counter 폴더 복사해서 workspace/ch01-buildup/react/01 폴더 생성
+    + workspace/ch01-buildup/react/sample/counter 폴더 복사해서 workspace/ch01-buildup/react/01 폴더 생성
   - 🧑‍💻 [02 Counter - React로 구현(JSX)](./workspace-ins/ch01-buildup/react/02/index.html)
-    - workspace/ch01-buildup/react/01 폴더 복사해서 workspace/ch01-buildup/react/02 폴더 생성
+    + workspace/ch01-buildup/react/01 폴더 복사해서 workspace/ch01-buildup/react/02 폴더 생성
   - 🧑‍💻 [03 Todo List - React로 UI 구성(JSX)](./workspace-ins/ch01-buildup/react/03/index.html)
-    - workspace/ch01-buildup/react/02 폴더 복사해서 03 폴더 생성
+    + workspace/ch01-buildup/react/02 폴더 복사해서 03 폴더 생성
 
-### 5일차(2025.06.02 화)
+### 5일차(2025.06.02 월)
 #### 오전(3시간)
 * 03 React
   - 🧑‍💻 [04 Todo List - React 컴포넌트 분리](./workspace-ins/ch01-buildup/react/04/index.html)
-    - workspace/ch01-buildup/react/03 폴더 복사해서 04 폴더 생성
+    + workspace/ch01-buildup/react/03 폴더 복사해서 04 폴더 생성
   - 🧑‍💻 [05 Todo List - React 기능 추가](./workspace-ins/ch01-buildup/react/05/index.html)
-    - workspace/ch01-buildup/react/04 폴더 복사해서 05 폴더 생성
+    + workspace/ch01-buildup/react/04 폴더 복사해서 05 폴더 생성
 
 #### 오후(3시간)
 * 02 SPA(Single Page Application)
   * Counter(라이브리리 개발) 작성
     - 🧑‍💻 [08 컴포넌트를 모듈로 분리](./workspace-ins/ch01-buildup/counter/08/index.html)
-      - workspace/ch01-buildup/counter/07 폴더 복사해서 08 폴더 생성
+      + workspace/ch01-buildup/counter/07 폴더 복사해서 08 폴더 생성
   * Todo List 작성(vanillaJS + Lib)
     - 🧑‍💻 [09 컴포넌트를 모듈로 분리](./workspace-ins/ch01-buildup/todolist/09/index.html)
-      - workspace/ch01-buildup/todolist/08 폴더 복사해서 09 폴더 생성
-      
+      + workspace/ch01-buildup/todolist/08 폴더 복사해서 09 폴더 생성
+
+### 6일차(2025.06.04 수)
+#### 오전(3시간)
+* 03 React
+  - 🧑‍💻 [06 Todo List - React 컴포넌트를 모듈로 분리](./workspace-ins/ch01-buildup/react/06)
+    + workspace/ch01-buildup/react 폴더에서 다음 명령 실행
+    ```sh
+    npm init vite@latest
+      Project name: 06
+      Select a fremerork: React
+      Select a variant: TypeScript
+    cd 06
+    npm i
+    npm run dev
+    ```
+
+#### 오후(3시간)
+* 🔊 [2장 React 시작하기](./workspace-ins/ch02-start)
+  - 🔊 [1. React란?](./workspace-ins/ch02-start#1-react란)
+
+* 2-1 리액트란?
+  * Hello React
+    - 🧑‍💻 [01 Hello HTML](./workspace-ins/ch02-start/hello/01.html)
+    - 🧑‍💻 [02 Hello DOM](./workspace-ins/ch02-start/hello/02.html)
+    - 🧑‍💻 [03 Hello React](./workspace-ins/ch02-start/hello/03.html)
+      + workspace/ch02-start/hello/02.html 복사해서 03.html 생성
+    - 🧑‍💻 [04 Hello JSX with babel](./workspace-ins/ch02-start/hello/04.html)
+      + workspace/ch02-start/hello/03.html 복사해서 04.html 생성
+  * Simple Todo List
+    - 🧑‍💻 [05 Simple Todo List - HTML](./workspace-ins/ch02-start/todo/05.html)
+    - 🧑‍💻 [06 Simple Todo List - React](./workspace-ins/ch02-start/todo/06.html)
+    - 🧑‍💻 [07 Simple Todo List - React Component](./workspace-ins/ch02-start/todo/07.html)
+      + workspace/ch02-start/todo/06.html 복사해서 07.html 생성
+    - 🧑‍💻 [08 Simple Todo List - React Props](./workspace-ins/ch02-start/todo/08.html)
+      + workspace/ch02-start/todo/07.html 복사해서 08.html 생성
+
+* 🔊 [2. React 개발 환경 구축](./workspace-ins/ch02-start#2-react-개발-환경-구축)
+* 🔊 [3. React 애플리케이션 배포](./workspace-ins/ch02-start#3-react-애플리케이션-배포)
+
+* 2-2 리액트 개발 환경 구축
+  - 🧑‍💻 [09 Vite로 개발 환경 구축 및 빌드, 배포](./workspace-ins/ch02-start/vite/09)
+    + workspace/ch02-start/vite 폴더에서 다음 명령 실행
+    ```sh
+    npm init vite@latest
+      Project name: 09
+      Select a fremerork: React
+      Select a variant: TypeScript
+    cd 09
+    npm i
+    npm run dev
+    ```
+
 # 5. 참고 사이트
 
 ## 온라인 코드 편집기(HTML, CSS, JS)
