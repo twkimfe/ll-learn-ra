@@ -218,6 +218,7 @@
   - 🧑‍💻 [03 Todo List - React로 UI 구성(JSX)](./workspace-ins/ch01-buildup/react/03/index.html)
     + workspace/ch01-buildup/react/02 폴더 복사해서 03 폴더 생성
 
+## 2주차 (2025.06.02 월 ~ 2025.06.05 목, 3일)
 ### 5일차(2025.06.02 월)
 #### 오전(3시간)
 * 03 React
@@ -273,6 +274,8 @@
 * 🔊 [2. React 개발 환경 구축](./workspace-ins/ch02-start#2-react-개발-환경-구축)
 * 🔊 [3. React 애플리케이션 배포](./workspace-ins/ch02-start#3-react-애플리케이션-배포)
 
+### 7일차(2025.06.05 목)
+#### 오전(3시간)
 * 2-2 리액트 개발 환경 구축
   - 🧑‍💻 [09 Vite로 개발 환경 구축 및 빌드, 배포](./workspace-ins/ch02-start/vite/09)
     + workspace/ch02-start/vite 폴더에서 다음 명령 실행
@@ -285,6 +288,28 @@
     npm i
     npm run dev
     ```
+
+#### 오후(3시간)
+* 🔊 [4. JSX](./workspace-ins/ch02-start#4-jsx)
+* 🔊 [5. 속성 (Props)](./workspace-ins/ch02-start#5-속성-props)
+
+* 2-3 Props
+  - 🧑‍💻 [10 Button 컴포넌트에 Props 전달](./workspace-ins/ch02-start/props/10)
+    + workspace/ch02-start/props 폴더에서 다음 명령 실행
+    ```sh
+    npm init vite@latest
+      Project name: 10
+      Select a fremerork: React
+      Select a variant: TypeScript
+    cd 10
+    npm i # workspace/package.json에서 npm i 한 상태라면 생략
+    npm run dev
+    ```
+    + workspace/ch01-buildup/react/02/index.html에서 컴포넌트 복사
+
+* 🔊 [6. 상태 (State)](./workspace-ins/ch02-start#6-상태-state)
+  - 🔊 [6.1 React.useState()](./workspace-ins/ch02-start#61-reactusestate)
+
 
 # 5. 참고 사이트
 
