@@ -310,6 +310,33 @@
 * 🔊 [6. 상태 (State)](./workspace-ins/ch02-start#6-상태-state)
   - 🔊 [6.1 React.useState()](./workspace-ins/ch02-start#61-reactusestate)
 
+## 3주차 (2025.06.09 월 ~ 2025.06.13 금, 5일)
+
+### 8일차(2025.06.09 월)
+#### 오전(3시간)
+* 2-4 State
+  - 🧑‍💻 [11 state 대신 컴포넌트 외부의 변수 사용시 문제점](./workspace-ins/ch02-start/state/11)
+    + workspace/ch02-start/state 폴더에서 vite 프로젝트 생성(11)
+    + workspace/ch02-start/state/sample/11.html 참고해서 컴포넌트 생성
+* 🔊 [6.2 상태 사용시 유의사항](./workspace-ins/ch02-start#62-상태-사용시-유의사항)
+  - 🧑‍💻 [12 이벤트 핸들러에서 state 값을 여러번 변경했을 때 문제점](./workspace-ins/ch02-start/state/12)
+    + workspace/ch02-start/state 폴더에서 vite 프로젝트 생성(12)
+    + workspace/ch02-start/state/sample/12.html 참고해서 컴포넌트 생성
+  - 🧑‍💻 [13 상태관리 대상이 객체일 경우 주의 사항](./workspace-ins/ch02-start/state/13)
+    + workspace/ch02-start/state 폴더에서 vite 프로젝트 생성(13)
+    + workspace/ch02-start/state/sample/13.html 참고해서 컴포넌트 생성
+
+#### 오후(3시간)
+* 🧑‍💻 workspace/vite-template 프로젝트 생성
+  - `npm init vite@latest vite-template`
+  - [vite.config.js 파일 수정](./workspace-ins/ch02-start#viteconfigjs)
+  - 불필요한 파일 삭제
+* 🔊 [6.3 상태의 불변성 (immutability)](./workspace-ins/ch02-start#63-상태의-불변성-immutability)
+  - 🧑‍💻 [14 상태관리 대상이 복합 객체일 경우 불변성 (feat. immer)](./workspace-ins/ch02-start/state/14)
+    + workspace/vite-template 폴더 복사해서 14 폴더 생성
+    + workspace/ch02-start/state/sample/14.html 참고해서 컴포넌트 생성
+    + workspace 폴더에서 immer 라이브러리 설치
+      - `npm i immer`
 
 # 5. 참고 사이트
 
