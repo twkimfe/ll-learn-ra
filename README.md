@@ -338,6 +338,21 @@
     + workspace 폴더에서 immer 라이브러리 설치
       - `npm i immer`
 
+### 9일차(2025.06.10 화)
+#### 오전(3시간)
+* 🔊 [7. 유효성 검증](./workspace-ins/ch02-start#7-유효성-검증)
+  - 🧑‍💻 [15 회원가입 입력값 상태 관리](./workspace-ins/ch02-start/state/15)
+    + workspace/vite-template 폴더 복사해서 15 폴더 생성
+    + workspace/ch02-start/state/sample/15.html 참고해서 컴포넌트 생성
+
+#### 오후(3시간)
+  - 🧑‍💻 [16 회원가입 입력값 검증 (feat. react-hook-form)](./workspace-ins/ch02-start/state/16)
+    + workspace/ch02-start/state/15 폴더 복사해서 16 폴더 생성
+    + workspace 폴더에서 react-hook-form 라이브러리 설치
+      - `npm i react-hook-form`
+* 🔊 [3장 클래스 컴포넌트와 컴포넌트의 라이프 사이클](./workspace-ins/ch03-class)
+  - 🧑‍💻 [01 클래스 컴포넌트](./workspace-ins/ch03-class/01-classbase)
+  
 # 5. 참고 사이트
 
 ## 온라인 코드 편집기(HTML, CSS, JS)

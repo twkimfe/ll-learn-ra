@@ -1,13 +1,13 @@
-function App() {
-  return (
-    <div>
-      <h1>01 클래스 컴포넌트</h1>
-      <div>
-        클릭 횟수 X 1: 0
-        <button>클릭</button>
-      </div>
-    </div>
-  );  
+import { Component } from 'react'; // 노드 패키지
+// import ChildComponent from '../src/FunctionBase'; // 사용자 정의 모듈
+import ChildComponent from './FunctionBase'; // 사용자 정의 모듈
+
+class App extends Component {
+  render() {
+    return (
+      <ChildComponent />
+    );
+  }
 }
 
 export default App

@@ -22,7 +22,7 @@
   ```
 
 #### 1-2 static getDerivedStateFromProps(props, state)
-* 부모 컴포넌트로부터 전달받은 props를 기반으로 상태를 없데이트 하고 싶을 때 사용
+* 부모 컴포넌트로부터 전달받은 props를 기반으로 상태를 업데이트 하고 싶을 때 사용
 * props나 state 값에 의해서 업데이트되는 새로운 state를 리턴하도록 작성
 * 일반적으로 props가 state에 영향을 주는 경우가 많지 않기 때문에 사용할 일은 거의 없음
 
