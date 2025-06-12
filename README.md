@@ -352,7 +352,30 @@
       - `npm i react-hook-form`
 * 🔊 [3장 클래스 컴포넌트와 컴포넌트의 라이프 사이클](./workspace-ins/ch03-class)
   - 🧑‍💻 [01 클래스 컴포넌트](./workspace-ins/ch03-class/01-classbase)
-  
+
+### 10일차(2025.06.11 수)
+#### 오전(3시간)
+* 🔊 [3장 클래스 컴포넌트와 컴포넌트의 라이프 사이클](./workspace-ins/ch03-class#3장-클래스-컴포넌트와-컴포넌트의-라이프-사이클)
+  - 🧑‍💻 [02 클래스 컴포넌트 - 함수형 컴포넌트와 같이 사용](./workspace-ins/ch03-class/02-functionbase)
+  - 🧑‍💻 [03 클래스 컴포넌트 - 컴포넌트의 라이프 사이클](./workspace-ins/ch03-class/03-lifecycle)
+
+#### 오후(3시간)
+* 🔊 [4장 리액트 훅](./workspace-ins/ch04-hooks#4장-리액트-훅)
+  - 🔊 [useState](./workspace-ins/ch04-hooks#usestate)
+    + 🧑‍💻 [01 useState - 상태 관리](./workspace-ins/ch04-hooks/01-useState)
+  - 🔊 [useEffect](./workspace-ins/ch04-hooks#useeffect)
+    + 🧑‍💻 [02 useEffect - side effect 관리](./workspace-ins/ch04-hooks/02-useEffect)
+
+### 11일차(2025.06.12 목)
+#### 오전(3시간)
+- 🔊 [useReducer](./workspace-ins/ch04-hooks#usereducer)
+  + 🧑‍💻 [03 useReducer - 상태 관리 로직을 한곳에](./workspace-ins/ch04-hooks/03-useReducer)
+
+#### 오후(3시간)
+- 🔊 [useRef](./workspace-ins/ch04-hooks#useref)
+  + 🧑‍💻 [04 useRef - 값이 유지되는 데이터 관리, DOM 엘리먼트 참조](./workspace-ins/ch04-hooks/04-useRef)
+
+
 # 5. 참고 사이트
 
 ## 온라인 코드 편집기(HTML, CSS, JS)
