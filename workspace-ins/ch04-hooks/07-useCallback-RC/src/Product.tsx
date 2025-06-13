@@ -1,5 +1,3 @@
-import React from "react";
-
 interface ProductProps {
   name: string;
   price: number;
@@ -9,6 +7,7 @@ interface ProductProps {
 
 // TODO 컴포넌트를 메모이제이션 해서 불필요한 리렌더링 방지
 function Product({ name, price, mainImage, content }: ProductProps) {
+  "use no memo"
   console.log('Product 렌더링.');
   
   return (
@@ -25,4 +24,4 @@ function Product({ name, price, mainImage, content }: ProductProps) {
   );
 }
 
-export default React.memo(Product);
+export default Product;
