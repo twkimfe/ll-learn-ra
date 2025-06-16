@@ -292,6 +292,14 @@ const cachedFn = useCallback(fn, dependencies);
 * 커스텀 훅의 이름은 리액트 훅임을 명시적으로 나타내기 위해 `useXXX` 형태로 작성하는 것이 권장됨
   - 예: `useFetch`, `useLocalStorage` 등
 
+### Custom Hook의 장점
+
+1. 코드 재사용성: 여러 컴포넌트에서 동일한 로직을 재사용할 수 있음
+2. 관심사 분리: 비즈니스 로직을 컴포넌트에서 분리하여 컴포넌트를 더 단순하게 만듦
+3. 테스트 용이성: 로직을 독립적으로 테스트할 수 있음
+4. 유지보수성: 로직이 한 곳에 모여있어 수정이 용이함
+5. 추상화: 복잡한 로직을 간단한 인터페이스로 추상화할 수 있음
+
 ## 훅 사용 시 주의사항
 * 클래스 기반 컴포넌트에서는 훅을 사용할 수 없음
   - 훅은 함수형 컴포넌트 전용이며, 상태 관리 및 생명 주기 관련 기능을 함수형 컴포넌트 내에서만 사용할 수 있음
@@ -300,6 +308,299 @@ const cachedFn = useCallback(fn, dependencies);
   - 훅의 호출 순서가 바뀌면 리액트는 훅의 상태를 추적할 수 없어서 에러가 발생할 수 있음
 * 훅은 항상 동일한 순서로 호출되어야 함
   - 각 렌더링마다 동일한 순서로 훅이 호출되어야 하므로, 조건문이나 반복문 내에서 훅을 호출하는 패턴을 피해야 함
+
+# 리액트 컴파일러
+
+* 리액트 컴파일러 참고
+  - https://ko.react.dev/learn/react-compiler
+
+## 리액트 컴파일러란?
+
+* 리액트 19와 함께 공개된 자동 최적화 도구로, 빌드 시점에 컴포넌트를 분석하여 자동으로 메모이제이션을 적용
+* 개발자가 수동으로 `useMemo`, `useCallback`, `React.memo`를 사용하지 않아도 최적화된 코드를 생성
+* Meta의 instagram.com을 비롯한 여러 서비스에서 사용 중
+
+## 리액트 컴파일러의 목적
+
+### 기존 리액트의 한계
+* 리액트는 상태가 변경될 때마다 컴포넌트를 리렌더링하는 반응적(reactive) 특성을 가짐
+* 이로 인해 불필요한 리렌더링이 자주 발생하여 성능 저하 문제가 생김
+* 개발자가 수동으로 메모이제이션 API를 사용해야 하는 부담
+
+### 해결 방안
+* 의미 있는 변화가 있을 때만 리렌더링 수행
+* 객체 참조 변경이 아닌 실제 값의 변화를 감지하여 최적화
+
+## 주요 기능
+
+### 1. 자동 메모이제이션
+* `useMemo`, `useCallback`, `React.memo`를 자동으로 적용
+* 의존성 배열 관리를 컴파일러가 자동으로 처리
+* 불필요한 재계산 및 재생성 방지
+
+### 2. 정밀한 의존성 추적
+* 객체 전체가 아닌 실제 사용되는 속성만 추적
+* 불필요한 반응성 제거
+* 더 정확한 최적화 적용
+
+### 3. JSX 레벨 최적화
+* JSX 요소들을 개별적으로 캐싱
+* 각 요소가 자신의 의존성에만 반응하도록 최적화
+* 컴포넌트 트리의 계단식 리렌더링 방지
+
+## 컴파일러 동작 원리
+
+### 컴파일 전 코드 예시
+```jsx
+function TodoList({ visibility, themeColor }) {
+  const [todos, setTodos] = useState(initialTodos);
+  const handleChange = todo => setTodos(todos => getUpdated(todos, todo));
+  const filtered = getFiltered(todos, visibility);
+
+  return (
+    <div>
+      <ul>
+        {filtered.map(todo => (
+          <Todo key={todo.id} todo={todo} onChange={handleChange} />
+        ))}
+      </ul>
+      <AddTodo setTodos={setTodos} themeColor={themeColor} />
+    </div>
+  );
+}
+```
+
+### 컴파일 후 코드 개념
+```jsx
+function TodoList({ visibility, themeColor }) {
+  const $ = useMemoCache(16); // 캐시 배열 생성
+  const [todos, setTodos] = useState(initialTodos);
+  
+  // handleChange 함수 메모이제이션
+  let handleChange;
+  if ($[0] === Symbol.for("react.memo_cache_sentinel")) {
+    handleChange = todo => setTodos(todos => getUpdated(todos, todo));
+    $[0] = handleChange;
+  } else {
+    handleChange = $[0];
+  }
+  
+  // filtered 값 메모이제이션
+  let filtered;
+  if ($[1] !== todos || $[2] !== visibility) {
+    filtered = getFiltered(todos, visibility);
+    $[1] = todos;
+    $[2] = visibility;
+    $[3] = filtered;
+  } else {
+    filtered = $[3];
+  }
+  
+  // JSX 요소들 개별 메모이제이션
+  // ... 각 JSX 요소가 자신의 의존성에 따라 캐싱됨
+  
+  return (/* 최적화된 JSX */);
+}
+```
+
+## 성능 개선 효과
+
+### Meta의 실제 프로덕션 결과
+* 마우스 클릭 및 스크롤 등 상호작용 최대 2.5배 향상
+* 페이지 초기 로드 및 내비게이션 속도 최대 12% 상승
+* 전체 서비스에서 평균 3~4%의 성능 개선
+* 컴포넌트 코드 라인 17% 감소 (성능은 향상)
+* 메모리 사용량 증가 없음
+
+### 최적화 대상
+1. 컴포넌트의 계단식 리렌더링 방지: 부모 컴포넌트 변경 시 자식들의 불필요한 리렌더링 방지
+2. 비용이 큰 계산 건너뛰기: 값이 변경되지 않은 경우 expensive 연산 생략
+3. useEffect 훅의 의존성 메모이제이션: useEffect 등의 무한 루프 방지
+
+## 설치 및 사용법
+
+### 패키지 설치
+```bash
+# 리액트 19+
+npm install -D babel-plugin-react-compiler@rc
+
+# 리액트 17, 18
+npm install react-compiler-runtime
+npm install -D babel-plugin-react-compiler@rc
+```
+
+### Vite 설정
+```js
+// vite.config.ts
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [
+    react({
+      babel: {
+        plugins: [
+          ["babel-plugin-react-compiler", {
+            // React 17, 18 사용 시
+            runtimeModule: "react-compiler-runtime"
+          }]
+        ]
+      }
+    })
+  ],
+  // ...
+});
+```
+
+## 사용 시 주의사항
+
+### 리액트의 규칙 준수 필요
+* 컴포넌트와 Hook은 순수함수여야 함
+* Hook은 최상위에서만 호출
+* 조건문, 반복문, 중첩 함수 내에서 Hook 호출 금지
+* 렌더링 중 DOM 조작 금지
+* 리액트의 규칙 참고: https://ko.react.dev/reference/rules
+
+### 기존 최적화 코드와의 관계
+* 기존 `useMemo`, `useCallback` 코드는 점진적으로 제거 가능
+* 컴파일러가 더 정밀한 최적화를 제공하므로 수동 최적화보다 효과적
+* 버전 고정 권장: 의도치 않은 동작 변화 방지를 위해 정확한 버전 사용
+
+### 호환성
+* 리액트 19: 내장 지원
+* 리액트 17, 18: `react-compiler-runtime` 패키지 필요
+* 라이브러리: 소스 코드 변환 전 컴파일 필요
+
+## 개발 도구 지원
+
+### ESLint 통합
+```bash
+npm install -D eslint-plugin-react-hooks@^6.0.0-rc.1
+```
+
+```js
+// eslint.config.js
+import * as reactHooks from 'eslint-plugin-react-hooks';
+// ...
+
+export default tseslint.config(
+  // ...
+  {
+    // ...
+    plugins: {
+      'react-hooks': reactHooks,
+      // ...
+    },
+    rules: {
+      ...reactHooks.configs.recommended.rules,
+      // ...
+    },
+  },
+)
+```
+
+### React DevTools
+* 브라우저 개발자 도구의 Components 탭에서 컴파일러로 최적화된 컴포넌트는 "Memo ✨" 배지로 표시
+* 메모이제이션 상태를 시각적으로 확인 가능
+
+## 리액트 Compiler vs 기존 최적화 방법
+
+### 개발자 작업 방식
+* 기존 방법: 수동으로 `useMemo`, `useCallback`, `React.memo`를 일일이 적용
+* 리액트 Compiler: 자동으로 최적화 적용, 개발자는 일반적인 코드만 작성
+
+### 의존성 관리
+* 기존 방법: 개발자가 직접 의존성 배열을 관리하고 실수 위험 존재
+* 리액트 Compiler: 컴파일러가 코드를 분석하여 자동으로 의존성 추적
+
+### 최적화 정확도
+* 기존 방법: 개발자의 실수로 인한 최적화 누락이나 잘못된 적용 가능
+* 리액트 Compiler: 정밀한 정적 분석으로 정확하고 일관된 최적화
+
+### 코드 복잡성
+* 기존 방법: 메모이제이션 코드로 인해 복잡성 증가, 가독성 저하
+* 리액트 Compiler: 깔끔하고 직관적인 코드 유지, 복잡성 감소
+
+### 유지보수성
+* 기존 방법: 의존성 배열 관리, 최적화 코드 수정 등으로 유지보수 어려움
+* 리액트 Compiler: 컴파일러가 자동 처리하므로 유지보수 부담 최소화
+
+### 성능 효과
+* 기존 방법: 개발자의 수동 최적화 수준에 의존적
+* 리액트 Compiler: 개발자가 놓칠 수 있는 부분까지 포함한 더 정밀한 최적화
+
+## 미래 전망
+
+### 안정화 로드맵
+1. Beta: 초기 사용자 피드백 수집
+2. Release Candidate (현재): 대부분의 리액트 앱/라이브러리에서 검증
+3. Stable Release: 완전한 안정화 버전
+
+### 생태계 확장
+* SWC 지원: Babel 없이 더 빠른 컴파일
+* Vite, Rsbuild 지원: 다양한 빌드 도구 통합
+* IDE 확장: 개발 환경 통합 (연구 단계)
+
+## 실제 적용 예시
+
+### 최적화 전
+```jsx
+function Post({ post, big }) {
+  const styles = useStyles();
+  const postTitle = useMemo(() => `Title: ${post.title}`, [post]);
+  const titleStyle = useMemo(() => {
+    if (big) {
+      return { fontSize: styles.fontSize.big };
+    } else {
+      return { fontSize: styles.fontSize.small };
+    }
+  }, [big, styles]); // styles 전체 객체 의존성
+
+  return (
+    <section>
+      <Title style={titleStyle}>{postTitle}</Title>
+      <p>{post.body}</p>
+      <LikeButton id={post.id} />
+    </section>
+  );
+}
+```
+
+### 컴파일러 적용 후 (개발자 코드)
+```jsx
+function Post({ post, big }) {
+  const styles = useStyles();
+  const postTitle = `Title: ${post.title}`; // 메모이제이션 제거
+  
+  const titleStyle = big 
+    ? { fontSize: styles.fontSize.big }
+    : { fontSize: styles.fontSize.small }; // 의존성 배열 제거
+
+  return (
+    <section>
+      <Title style={titleStyle}>{postTitle}</Title>
+      <p>{post.body}</p>
+      <LikeButton id={post.id} />
+    </section>
+  );
+}
+```
+
+## 결론
+
+리액트 Compiler는 리액트 개발의 패러다임을 바꾸는 혁신적인 도구입니다:
+
+### 주요 이점
+* 개발자 경험 향상: 수동 최적화 부담 제거
+* 성능 향상: 자동으로 최적화된 효율적인 코드 생성
+* 코드 간소화: 메모이제이션 관련 코드 17% 감소
+* 안정성: 기존 리액트 패러다임 유지하면서 최적화
+
+### 권장사항
+* 리액트 19 프로젝트에서는 적극적으로 도입 검토
+* 기존 프로젝트는 점진적 마이그레이션 계획
+* 리액트의 규칙을 준수하는 코드 작성 습관 중요
+* 충분한 테스트 커버리지 확보 후 도입
 
 # 리액트 19 새로운 훅들
 
@@ -500,299 +801,3 @@ function LikeButton({ postId, initialLikes }) {
 * 더 나은 UX: `useOptimistic`은 즉각적인 피드백으로 사용자 경험을 향상
 * 조건부 사용: `use` 훅은 조건부로 사용할 수 있어 더 유연한 데이터 로딩 가능
 
-# 리액트 컴파일러
-
-* 리액트 컴파일러 참고
-  - https://ko.react.dev/learn/react-compiler
-
-## 리액트 컴파일러란?
-
-* 리액트 19와 함께 공개된 자동 최적화 도구로, 빌드 시점에 컴포넌트를 분석하여 자동으로 메모이제이션을 적용
-* 개발자가 수동으로 `useMemo`, `useCallback`, `React.memo`를 사용하지 않아도 최적화된 코드를 생성
-* Meta의 instagram.com을 비롯한 여러 서비스에서 사용 중
-
-## 리액트 컴파일러의 목적
-
-### 기존 리액트의 한계
-* 리액트는 상태가 변경될 때마다 컴포넌트를 리렌더링하는 반응적(reactive) 특성을 가짐
-* 이로 인해 불필요한 리렌더링이 자주 발생하여 성능 저하 문제가 생김
-* 개발자가 수동으로 메모이제이션 API를 사용해야 하는 부담
-
-### 해결 방안
-* 의미 있는 변화가 있을 때만 리렌더링 수행
-* 객체 참조 변경이 아닌 실제 값의 변화를 감지하여 최적화
-
-## 주요 기능
-
-### 1. 자동 메모이제이션
-* `useMemo`, `useCallback`, `React.memo`를 자동으로 적용
-* 의존성 배열 관리를 컴파일러가 자동으로 처리
-* 불필요한 재계산 및 재생성 방지
-
-### 2. 정밀한 의존성 추적
-* 객체 전체가 아닌 실제 사용되는 속성만 추적
-* 불필요한 반응성 제거
-* 더 정확한 최적화 적용
-
-### 3. JSX 레벨 최적화
-* JSX 요소들을 개별적으로 캐싱
-* 각 요소가 자신의 의존성에만 반응하도록 최적화
-* 컴포넌트 트리의 계단식 리렌더링 방지
-
-## 컴파일러 동작 원리
-
-### 컴파일 전 코드 예시
-```jsx
-function TodoList({ visibility, themeColor }) {
-  const [todos, setTodos] = useState(initialTodos);
-  const handleChange = todo => setTodos(todos => getUpdated(todos, todo));
-  const filtered = getFiltered(todos, visibility);
-
-  return (
-    <div>
-      <ul>
-        {filtered.map(todo => (
-          <Todo key={todo.id} todo={todo} onChange={handleChange} />
-        ))}
-      </ul>
-      <AddTodo setTodos={setTodos} themeColor={themeColor} />
-    </div>
-  );
-}
-```
-
-### 컴파일 후 코드 개념
-```jsx
-function TodoList({ visibility, themeColor }) {
-  const $ = useMemoCache(16); // 캐시 배열 생성
-  const [todos, setTodos] = useState(initialTodos);
-  
-  // handleChange 함수 메모이제이션
-  let handleChange;
-  if ($[0] === Symbol.for("react.memo_cache_sentinel")) {
-    handleChange = todo => setTodos(todos => getUpdated(todos, todo));
-    $[0] = handleChange;
-  } else {
-    handleChange = $[0];
-  }
-  
-  // filtered 값 메모이제이션
-  let filtered;
-  if ($[1] !== todos || $[2] !== visibility) {
-    filtered = getFiltered(todos, visibility);
-    $[1] = todos;
-    $[2] = visibility;
-    $[3] = filtered;
-  } else {
-    filtered = $[3];
-  }
-  
-  // JSX 요소들 개별 메모이제이션
-  // ... 각 JSX 요소가 자신의 의존성에 따라 캐싱됨
-  
-  return (/* 최적화된 JSX */);
-}
-```
-
-## 성능 개선 효과
-
-### Meta의 실제 프로덕션 결과
-* 마우스 클릭 및 스크롤 등 상호작용 최대 2.5배 향상
-* 페이지 초기 로드 및 내비게이션 속도 최대 12% 상승
-* 전체 서비스에서 평균 3~4%의 성능 개선
-* 컴포넌트 코드 라인 17% 감소 (성능은 향상)
-* 메모리 사용량 증가 없음
-
-### 최적화 대상
-1. 컴포넌트의 계단식 리렌더링 방지: 부모 컴포넌트 변경 시 자식들의 불필요한 리렌더링 방지
-2. 비용이 큰 계산 건너뛰기: 값이 변경되지 않은 경우 expensive 연산 생략
-3. useEffect 훅의 의존성 메모이제이션: useEffect 등의 무한 루프 방지
-
-## 설치 및 사용법
-
-### 패키지 설치
-```bash
-# 리액트 19+
-npm install -D babel-plugin-react-compiler@rc
-
-# 리액트 17, 18
-npm install react-compiler-runtime
-npm install -D babel-plugin-react-compiler@rc
-```
-
-### Vite 설정
-```js
-// vite.config.ts
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-
-export default defineConfig({
-  plugins: [
-    react({
-      babel: {
-        plugins: [
-          ["babel-plugin-react-compiler", {
-            // React 17, 18 사용 시
-            runtimeModule: "react-compiler-runtime"
-          }]
-        ]
-      }
-    })
-  ],
-  // ...
-});
-```
-
-## 리액트 컴파일러를 적용하지 않는 방법
-* "use no memo" 지시어 추가
-  - "use no memo"는 React 컴파일러에 의해 컴파일되지 않도록 컴포넌트와 Hooks를 선택적으로 제외하는 지시어
-
-## 사용 시 주의사항
-
-### 리액트의 규칙 준수 필요
-* 컴포넌트와 Hook은 순수함수여야 함
-* Hook은 최상위에서만 호출
-* 조건문, 반복문, 중첩 함수 내에서 Hook 호출 금지
-* 렌더링 중 DOM 조작 금지
-* 리액트의 규칙 참고: https://ko.react.dev/reference/rules
-
-### 기존 최적화 코드와의 관계
-* 기존 `useMemo`, `useCallback` 코드는 점진적으로 제거 가능
-* 컴파일러가 더 정밀한 최적화를 제공하므로 수동 최적화보다 효과적
-* 버전 고정 권장: 의도치 않은 동작 변화 방지를 위해 정확한 버전 사용
-
-### 호환성
-* 리액트 19: 내장 지원
-* 리액트 17, 18: `react-compiler-runtime` 패키지 필요
-* 라이브러리: 소스 코드 변환 전 컴파일 필요
-
-## 개발 도구 지원
-
-### ESLint 통합
-```bash
-npm install -D eslint-plugin-react-hooks@^6.0.0-rc.1
-```
-
-```js
-// eslint.config.js
-import * as reactHooks from 'eslint-plugin-react-hooks';
-// ...
-
-export default tseslint.config(
-  // ...
-  {
-    // ...
-    plugins: {
-      'react-hooks': reactHooks,
-      // ...
-    },
-    rules: {
-      ...reactHooks.configs.recommended.rules,
-      // ...
-    },
-  },
-)
-```
-
-### React DevTools
-* 브라우저 개발자 도구의 Components 탭에서 컴파일러로 최적화된 컴포넌트는 "Memo ✨" 배지로 표시
-* 메모이제이션 상태를 시각적으로 확인 가능
-
-## 리액트 Compiler vs 기존 최적화 방법
-
-### 개발자 작업 방식
-* 기존 방법: 수동으로 `useMemo`, `useCallback`, `React.memo`를 일일이 적용
-* 리액트 Compiler: 자동으로 최적화 적용, 개발자는 일반적인 코드만 작성
-
-### 의존성 관리
-* 기존 방법: 개발자가 직접 의존성 배열을 관리하고 실수 위험 존재
-* 리액트 Compiler: 컴파일러가 코드를 분석하여 자동으로 의존성 추적
-
-### 최적화 정확도
-* 기존 방법: 개발자의 실수로 인한 최적화 누락이나 잘못된 적용 가능
-* 리액트 Compiler: 정밀한 정적 분석으로 정확하고 일관된 최적화
-
-### 코드 복잡성
-* 기존 방법: 메모이제이션 코드로 인해 복잡성 증가, 가독성 저하
-* 리액트 Compiler: 깔끔하고 직관적인 코드 유지, 복잡성 감소
-
-### 유지보수성
-* 기존 방법: 의존성 배열 관리, 최적화 코드 수정 등으로 유지보수 어려움
-* 리액트 Compiler: 컴파일러가 자동 처리하므로 유지보수 부담 최소화
-
-### 성능 효과
-* 기존 방법: 개발자의 수동 최적화 수준에 의존적
-* 리액트 Compiler: 개발자가 놓칠 수 있는 부분까지 포함한 더 정밀한 최적화
-
-## 미래 전망
-
-### 안정화 로드맵
-1. Beta: 초기 사용자 피드백 수집
-2. Release Candidate (현재): 대부분의 리액트 앱/라이브러리에서 검증
-3. Stable Release: 완전한 안정화 버전
-
-### 생태계 확장
-* SWC 지원: Babel 없이 더 빠른 컴파일
-* Vite, Rsbuild 지원: 다양한 빌드 도구 통합
-* IDE 확장: 개발 환경 통합 (연구 단계)
-
-## 실제 적용 예시
-
-### 최적화 전
-```jsx
-function Post({ post, big }) {
-  const styles = useStyles();
-  const postTitle = useMemo(() => `Title: ${post.title}`, [post]);
-  const titleStyle = useMemo(() => {
-    if (big) {
-      return { fontSize: styles.fontSize.big };
-    } else {
-      return { fontSize: styles.fontSize.small };
-    }
-  }, [big, styles]); // styles 전체 객체 의존성
-
-  return (
-    <section>
-      <Title style={titleStyle}>{postTitle}</Title>
-      <p>{post.body}</p>
-      <LikeButton id={post.id} />
-    </section>
-  );
-}
-```
-
-### 컴파일러 적용 후 (개발자 코드)
-```jsx
-function Post({ post, big }) {
-  const styles = useStyles();
-  const postTitle = `Title: ${post.title}`; // 메모이제이션 제거
-  
-  const titleStyle = big 
-    ? { fontSize: styles.fontSize.big }
-    : { fontSize: styles.fontSize.small }; // 의존성 배열 제거
-
-  return (
-    <section>
-      <Title style={titleStyle}>{postTitle}</Title>
-      <p>{post.body}</p>
-      <LikeButton id={post.id} />
-    </section>
-  );
-}
-```
-
-## 결론
-
-리액트 Compiler는 리액트 개발의 패러다임을 바꾸는 혁신적인 도구
-
-### 주요 이점
-* 개발자 경험 향상: 수동 최적화 부담 제거
-* 성능 향상: 자동으로 최적화된 효율적인 코드 생성
-* 코드 간소화: 메모이제이션 관련 코드 17% 감소
-* 안정성: 기존 리액트 패러다임 유지하면서 최적화
-
-### 권장사항
-* 리액트 19 프로젝트에서는 적극적으로 도입 검토
-* 기존 프로젝트는 점진적 마이그레이션 계획
-* 리액트의 규칙을 준수하는 코드 작성 습관 중요
-* 충분한 테스트 커버리지 확보 후 도입
