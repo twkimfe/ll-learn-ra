@@ -1,14 +1,14 @@
-import MyLink from "@pages/MyLink";
+import { Link } from "react-router";
 
 function Header() {
   return (
     <header>
       <h1>02 리액트 라우터 사용</h1>
-      <MyLink to="home">home</MyLink>
+      <Link to="/home">home</Link>
       <br/>
-      <MyLink to="page1">page1</MyLink>
+      <Link to="/page1">page1</Link>
       <br/>
-      <MyLink to="page2">page2</MyLink>
+      <Link to="/page2">page2</Link>
     </header>
   );
 }

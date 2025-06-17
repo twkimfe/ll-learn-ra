@@ -1,14 +1,17 @@
+import Header from "@pages/components/Header";
+
 function Home() {
+  // URL 변경 시 컴포넌트 교체
+  const handleLocationChange = () => {
+    console.log(location.pathname, '으로 주소 변경됨');
+  }
+
+  // popstate 이벤트가 발생 시, handleLocationChange 호출
+  window.addEventListener('popstate', handleLocationChange)
+
   return (
     <>
-      <header>
-        <h1>리액트 라우터 - 01 클라이언트 라우팅 직접 구현</h1>
-        <a href="home.html">home</a>
-        <br/>
-        <a href="page1.html">page1</a>
-        <br/>
-        <a href="page2.html">page2</a>
-      </header>
+      <Header />
       <h2>SPA Home</h2>
     </>
   );
