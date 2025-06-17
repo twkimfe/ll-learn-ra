@@ -36,7 +36,7 @@ function Counter({ children='1' }: CounterProps){
       <input 
         id="step" 
         type="number" 
-        value={ stepRef.current }
+        defaultValue={ stepRef.current }
         onChange={ (event) => stepRef.current = Number(event.target.value) }
       />
       <Button color="red" onClick={ handleDown }>-_-</Button>

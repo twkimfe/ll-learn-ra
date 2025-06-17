@@ -390,6 +390,22 @@
     - 🧑‍💻 [01 기본 Todo List](./workspace-ins/ch12-app/todolist/01-basic)
     - 🧑‍💻 [02 컨테이너 컴포넌트 추가](./workspace-ins/ch12-app/todolist/02-container)
 
+### 13일차(2025.06.16 월)
+#### 오전(3시간)
+* 12장 앱 개발
+  * 12-1 Todo List
+    - 🧑‍💻 [03 useRef, useReducer로 상태 관리](./workspace-ins/ch12-app/todolist/03-hooks)
+    - 🧑‍💻 [04 React.memo, useCallback으로 메모이제이션](./workspace-ins/ch12-app/todolist/04-memo)
+* 4장 리액트 훅
+  * 🔊 [Custom Hook](./workspace-ins/ch04-hooks#custom-hook)
+    - 🧑‍💻 [08 customHook - useCounter 커스텀 훅 사용](./workspace-ins/ch12-app/todolist/08-customCounter)
+
+#### 오후(3시간)
+* 4장 리액트 훅
+  * Custom Hook
+    - 🧑‍💻 [09 customHook - 커스텀 훅 없이 fetch API 사용](./workspace-ins/ch12-app/todolist/09-fetch)
+    - 🧑‍💻 [10 customHook - useFatch, useAxios 커스텀 훅 사용](./workspace-ins/ch12-app/todolist/10-customFetch)
+    
 # 5. 참고 사이트
 
 ## 온라인 코드 편집기(HTML, CSS, JS)

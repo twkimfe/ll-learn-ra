@@ -145,11 +145,11 @@
   ```json
   {
     "compilerOptions": {
-      "baseUrl": "./src",
+      "baseUrl": ".",
       "paths": {
-        "@/*": ["/*"],
-        "@components/*": ["components/*"],
-        "@pages/*": ["pages/*"],
+        "@/*": ["src/*"],
+        "@components/*": ["src/components/*"],
+        "@pages/*": ["src/pages/*"],
       },
     }
   }
