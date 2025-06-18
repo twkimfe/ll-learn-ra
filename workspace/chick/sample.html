@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐥Todo List🐥</title>
+  
+  <script>
+    // 샘플 목록
+    const itemList = [
+      { _id: 1, title: '자바스크립트 공부', done: true },
+      { _id: 2, title: 'JS 프로젝트', done: true },
+      { _id: 3, title: 'React 공부', done: false },
+    ];
+
+  </script>
+  
+</head>
+<body>
+  <div id="todo">
+    <header>
+      <h1>Todo List - 🐤</h1>
+    </header>
+    <div id="main">
+      <h2>할일 목록</h2>
+      <div class="todoinput">
+        <input type="text" autofocus>
+        <button type="button">추가</button>
+      </div>
+      <ul class="todolist">
+        <li>
+          <span>1</span>
+          <span><s>샘플1</s></span>
+          <button type="button">삭제</button>
+        </li>
+        <li>
+          <span>2</span>
+          <span>샘플2</span>
+          <button type="button">삭제</button>
+        </li>
+        <li>
+          <span>3</span>
+          <span>샘플3</span>
+          <button type="button">삭제</button>
+        </li>
+      </ul>
+    </div>
+    <footer>
+      <p>멋쟁이 사자처럼 FrontEnd BootCamp</p>
+    </footer>
+  </div>
+</body>
+</html>
