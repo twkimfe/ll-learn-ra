@@ -174,7 +174,7 @@ npm i react-router
     const { _id } = useParams();
     // ...
   }
-```
+  ```
 
 ## 5.2 중첩 라우트 (nested route)
 * Route 컴포넌트 내부에 자식 Route 컴포넌트를 포함
@@ -406,7 +406,7 @@ npm i react-router
   navigate('/', { state: { from: '/list' } }); // history.pushState({ from: '/list' }, '', '/')
   navigate('/list?keyword=hello', { replace: true }); // history.replaceState(null, '', '/list?keyword=hello')
   navigate('..', { relative: 'path' }); // 상대경로 지정
-  navigate(-1); // window.history.back(-1)
+  navigate(-1); // window.history.go(-1)
   ```
 
 ## 6.6 useLocation
