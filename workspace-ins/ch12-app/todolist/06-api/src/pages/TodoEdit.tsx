@@ -1,3 +1,4 @@
+import useAxiosInstance from "@hooks/useAxiosInstance";
 import type { TodoItem } from "@pages/TodoInfo";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate, useOutletContext } from "react-router";
@@ -8,6 +9,8 @@ interface OutletContextProps {
 }
 
 function TodoEdit() {
+
+  const axiosInstance = useAxiosInstance();
 
   const navigate = useNavigate();
 
@@ -21,15 +24,22 @@ function TodoEdit() {
     }
   });
 
-  const updateTodo = (formData: TodoItem) => {
+  const updateTodo = async (formData: TodoItem) => {
     console.log('API 서버에 수정 요청', formData);
-    // TODO API 서버에 수정 요청
+    try{
+      // API 서버에 수정 요청
+      await axiosInstance.patch(`/todolist/${item._id}`, formData);
 
-    alert('할일이 수정 되었습니다.');
+      alert('할일이 수정 되었습니다.');
 
-    // 상세 보기로 이동
-    // navigate(-1); // window.history.go(-1);
-    navigate(`/list/${item._id}`);
+      // 상세 보기로 이동
+      // navigate(-1); // window.history.go(-1);
+      navigate(`/list/${item._id}`);
+    }catch(err){
+      console.error(err);
+      alert('할일 수정에 실패했습니다.');
+    }
+    
   }
 
   return (

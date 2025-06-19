@@ -1,0 +1,322 @@
+/* 폰트 정의 */
+@font-face {
+    font-family: 'Ownglyph_ParkDaHyun';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2411-3@1.0/Ownglyph_ParkDaHyun.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+  font-family: 'OgBiCe';
+  src: url('https://cdn.jsdelivr.net/gh/wooin21/web/fonts/Nanum/OgBiCe.woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 기본 CSS 스타일 초기화 */
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+a{
+  text-decoration: none;
+  color: inherit;
+}
+body{  
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  /* 종이 텍스쳐 배경 */
+  background-image: url('https://tse4.mm.bing.net/th?id=OIP.sMUJ8vxggbsI5DlmWc-5eAAAAA&pid=Api');
+  /* background-image: url('https://images.freecreatives.com/wp-content/uploads/2016/03/45-Degree-Seamless-White-Fabric-Background-Texture.png'); */
+
+  display: flex;
+  justify-content: center; 
+  min-height: 100vh;       
+  width: 100vw; 
+  font-family: 'OgBiCe', sans-serif;
+  font-size: 20px;
+}
+p{
+  margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: normal;
+}
+
+/* 공통 적용 사항 */
+header, footer {  
+  max-width: 1024px; 
+  min-width: 500px; 
+}
+.todoapp {
+  /* background-color: beige; */
+  /* footer 바닥으로 붙이기 위해 정의 */
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.todo {
+  max-width: 1024px;
+}
+#main {
+  width: 100%;
+}
+#main h2 {
+  margin-block: 10px;
+}
+
+/* Header 스타일: 포스트잇 모양 */
+header{
+  max-width: 1024px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+header h1{
+  width: 80%;
+  padding-top: 20px;
+  font-size: 38px;
+  text-align: center;
+}
+/* 포스트잇 */
+header div{
+  width: 20%;
+  margin-inline: 30px;
+  margin-top: 20px;
+  margin-bottom: -40px;
+  font-family: 'Ownglyph_ParkDaHyun', sans-serif;
+  font-size: 22px;
+  background: linear-gradient(-140deg, transparent 30px, #fff9c4 0);
+  width: 170px;
+  height: 170px;
+
+  overflow: hidden;
+  border-radius: 1px;
+  box-shadow: -3px 3px 2px 0 rgba(0,0,0,0.2);
+  
+  transform: rotate(12deg);
+  z-index: 1;
+}
+/* 접힌 모서리 */
+header div::before{
+  content:'';
+  position:absolute;
+  top:0; right:0;
+  background:linear-gradient(to left bottom, transparent 50%, rgba(0,0,0,.2) 0, rgba(0,0,0,.4)) 100% 0 no-repeat;
+  width:25px;
+  height:3em;
+  transform:translateY(-1.3em) rotate(-30deg);
+  transform-origin: bottom right;
+  border-bottom-left-radius:inherit;
+  box-shadow: -.2em .2em .3em -.1em rgba(0,0,0,.15);
+}
+/* 포스트잇 내부 */
+header ul {
+margin-block-start: 40px;
+}
+header li {
+  border-bottom: 1px solid;
+  margin-inline: 25px;
+  margin-block: 8px;
+  padding-left: 10px;
+}
+.menu{
+  /* background-color: beige; */
+}
+.menu-dark{
+  /* background-color: tan; 
+  color: white; */
+  font-weight: 600;
+}
+.menu-dark::before {
+  content: "✓ ";
+  font-size: 16px;
+  color: #388e3c; /* 녹색 체크 */
+  font-weight: bold;
+}
+
+/* todolist 스타일: 줄노트 */
+.todolist li{
+  border-bottom: 1px solid black;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
+  gap: 8px;
+}
+.todolist li span::after{
+  content: '. ';
+}
+
+/* todolist li 버튼 스타일: 작은 스티키 인덱스 모양 */
+.todolist li button {
+  width: 50px;
+  height: 23px;
+  margin-left: auto;
+  padding-left: 2px;     
+  text-align: left;       
+
+  color: rgb(66, 66, 66);
+  font-size: 17px;
+  border-radius: 2px;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.6) 60%, red 60%);
+  transition: 
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+.todolist li button:hover {
+  color: rgb(255, 28, 28);
+
+  transform: translateY(-4px) rotate(-8deg); 
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.25); 
+  filter: brightness(1.05);   
+}
+
+/* todolist의 추가 버튼 스타일: 작은 포스트잇 타입 */
+a[href="/add"] {
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background: linear-gradient(-150deg, transparent 9px, skyblue 0);
+  box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  font-family: 'Ownglyph_ParkDaHyun', sans-serif;
+  font-size: 18px;
+  padding: 10px 6px 5px;
+  transform: rotate(6deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  text-align: center;
+  overflow: hidden;
+}
+/* 접히는 모서리 */
+a[href="/add"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 15px; 
+  height: 30px;
+  background: linear-gradient(
+    to left bottom,
+    transparent 50%,
+    rgba(0, 0, 0, 0.1) 0,
+    rgba(0, 0, 0, 0.25)
+  ) 100% 0 no-repeat;
+  transform: translateY(-1em) rotate(-30deg);
+  transform-origin: bottom right;
+  box-shadow: -0.15em 0.15em 0.2em -0.05em rgba(0, 0, 0, 0.15);
+  border-bottom-left-radius: inherit;
+}
+a[href="/add"]:hover {
+  background: skyblue;
+}
+a[href="/add"]:hover::before {
+  display: none;
+}
+label[for="content"] {
+  vertical-align: top;
+}
+
+/* 버튼 스타일: 스티키 인덱스 모양 */
+button, .todo a[href="/list"], .todo a[href$="/edit"], form button + a[href^="/list/"] {
+  margin: 3px;
+  width: 100px;
+  height: 36px;
+  border: none;
+  border-radius: 2px;
+  font-family: 'Ownglyph_ParkDaHyun', sans-serif;
+  font-size: 20px;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.6) 65%, var(--color) 65%);
+  text-align: left;       
+  padding-left: 13px;     
+  transition: 
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+/* 호버 시 글씨 색 변경, 위로 살짝 뜨는 스타일 적용 */
+button:hover, .todo a[href="/list"]:hover, .todo a[href$="/edit"]:hover, form button + a[href^="/list/"]:hover {
+  color: var(--color);
+  transform: translateY(-4px) rotate(-8deg); 
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.25); 
+  filter: brightness(1.05); 
+}
+
+/* 버튼 type 별 색상 지정 */
+button[type="submit"] {
+  --color: #4caf50;
+}
+button[type="reset"] {
+  --color: #e8eb50;
+}
+button[type="button"] {
+  --color: #2196f3;
+}
+/* 폼 내부 a태그 별도 형식 및 색상 지정 */
+.todo a[href="/list"], .todo a[href$="/edit"], form button + a[href^="/list/"] {
+  display: inline-block;
+  margin-top: 10px;
+  line-height: 36px; /* 위치 조정을 위해 height와 같게 설정 */
+}
+.todo a[href$="/edit"] {
+  --color: #ff79dd;
+}
+.todo a[href="/list"] {
+  --color: #8f55ec;
+}
+form button + a[href^="/list/"]{
+  --color: red;
+}
+
+/* 기본 입력창 스타일 */
+input{
+  width: 200px;
+  height: 30px;
+  font-family: 'Ownglyph_ParkDaHyun', sans-serif;
+  font-size: 18px;
+  letter-spacing: 2px;
+  border: 1px solid grey;
+  border-radius: 3px;
+  outline: none;
+  background-color: white;
+}
+/* 내용 입력창 스타일 */
+textarea{
+  font-family: 'Ownglyph_ParkDaHyun', sans-serif;
+  border: 1px solid grey;
+  width: 200px;
+}
+
+/* 폼 에러 발생 시 표시되는 문구 스타일 */
+.input-error{
+  font-size: 1rem;
+  color: red;
+}
+
+/* footer 스타일 */
+footer {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 0px;
+  margin-top: auto;
+  padding: 20px;
+}

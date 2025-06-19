@@ -330,7 +330,7 @@ npm i react-router
 * TodoInfo.tsx
   ```tsx
   // URL이 list/3일 때 useParams()는 { _id: 3 }을 반환
-  const params = useParems();
+  const params = useParams();
   const _id = params._id;
   // 또는
   const { _id } = useParams();

@@ -1,3 +1,4 @@
+import useAxiosInstance from "@hooks/useAxiosInstance";
 import { useEffect, useState } from "react";
 import { Link, Outlet, useMatch, useParams } from "react-router";
 
@@ -10,16 +11,9 @@ export interface TodoItem {
   updatedAt: string;
 }
 
-const item = {
-  _id: 2,
-  title: '자바스크립트 복습',
-  content: '리액트도 당연히 복습.',
-  done: false,
-  createdAt: '2025.06.17 16:49:00',
-  updatedAt: '2025.06.17 16:49:00',
-};
-
 function TodoInfo() {
+
+  const axiosInstance = useAxiosInstance();
 
   // "/list/:_id" 정의된 path 값이 있을 때 
   // 주소창의 값이 "/list/3" 일 경우 useParams()가 리턴하는 값: { _id: 3 }
@@ -31,11 +25,16 @@ function TodoInfo() {
 
   const [ data, setData ] = useState<TodoItem | null>(null);
 
-  const fetchTodoInfo = () => {
+  const fetchTodoInfo = async () => {
     console.log('API 서버에 상세 정보 요청');
-    // TODO API 서버에 상세 정보 요청
-
-    setData(item);
+    // API 서버에 상세 정보 요청
+    try{
+      const res = await axiosInstance.get<{ item: TodoItem }>(`/todolist/${_id}`);
+      setData(res.data.item);
+    }catch(err){
+      console.error(err);
+      alert('할일 조회에 실패했습니다.');
+    }
   };
 
   useEffect(() => {
@@ -64,11 +63,10 @@ function TodoInfo() {
             
           </div>
 
-          <Outlet context={{ item }} />
+          <Outlet context={{ item: data }} />
         </>
       }
       
-
     </div>
   );
 }

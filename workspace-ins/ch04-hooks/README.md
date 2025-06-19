@@ -404,16 +404,7 @@ function TodoList({ visibility, themeColor }) {
 }
 ```
 
-## 성능 개선 효과
-
-### Meta의 실제 프로덕션 결과
-* 마우스 클릭 및 스크롤 등 상호작용 최대 2.5배 향상
-* 페이지 초기 로드 및 내비게이션 속도 최대 12% 상승
-* 전체 서비스에서 평균 3~4%의 성능 개선
-* 컴포넌트 코드 라인 17% 감소 (성능은 향상)
-* 메모리 사용량 증가 없음
-
-### 최적화 대상
+## 최적화 대상
 1. 컴포넌트의 계단식 리렌더링 방지: 부모 컴포넌트 변경 시 자식들의 불필요한 리렌더링 방지
 2. 비용이 큰 계산 건너뛰기: 값이 변경되지 않은 경우 expensive 연산 생략
 3. useEffect 훅의 의존성 메모이제이션: useEffect 등의 무한 루프 방지
@@ -453,6 +444,10 @@ export default defineConfig({
 });
 ```
 
+## 리액트 컴파일러를 적용하지 않는 방법
+* "use no memo" 지시어 추가
+  - "use no memo"는 React 컴파일러에 의해 컴파일되지 않도록 컴포넌트와 Hooks를 선택적으로 제외하는 지시어
+
 ## 사용 시 주의사항
 
 ### 리액트의 규칙 준수 필요
@@ -461,16 +456,6 @@ export default defineConfig({
 * 조건문, 반복문, 중첩 함수 내에서 Hook 호출 금지
 * 렌더링 중 DOM 조작 금지
 * 리액트의 규칙 참고: https://ko.react.dev/reference/rules
-
-### 기존 최적화 코드와의 관계
-* 기존 `useMemo`, `useCallback` 코드는 점진적으로 제거 가능
-* 컴파일러가 더 정밀한 최적화를 제공하므로 수동 최적화보다 효과적
-* 버전 고정 권장: 의도치 않은 동작 변화 방지를 위해 정확한 버전 사용
-
-### 호환성
-* 리액트 19: 내장 지원
-* 리액트 17, 18: `react-compiler-runtime` 패키지 필요
-* 라이브러리: 소스 코드 변환 전 컴파일 필요
 
 ## 개발 도구 지원
 
@@ -503,105 +488,6 @@ export default tseslint.config(
 ### React DevTools
 * 브라우저 개발자 도구의 Components 탭에서 컴파일러로 최적화된 컴포넌트는 "Memo ✨" 배지로 표시
 * 메모이제이션 상태를 시각적으로 확인 가능
-
-## 리액트 Compiler vs 기존 최적화 방법
-
-### 개발자 작업 방식
-* 기존 방법: 수동으로 `useMemo`, `useCallback`, `React.memo`를 일일이 적용
-* 리액트 Compiler: 자동으로 최적화 적용, 개발자는 일반적인 코드만 작성
-
-### 의존성 관리
-* 기존 방법: 개발자가 직접 의존성 배열을 관리하고 실수 위험 존재
-* 리액트 Compiler: 컴파일러가 코드를 분석하여 자동으로 의존성 추적
-
-### 최적화 정확도
-* 기존 방법: 개발자의 실수로 인한 최적화 누락이나 잘못된 적용 가능
-* 리액트 Compiler: 정밀한 정적 분석으로 정확하고 일관된 최적화
-
-### 코드 복잡성
-* 기존 방법: 메모이제이션 코드로 인해 복잡성 증가, 가독성 저하
-* 리액트 Compiler: 깔끔하고 직관적인 코드 유지, 복잡성 감소
-
-### 유지보수성
-* 기존 방법: 의존성 배열 관리, 최적화 코드 수정 등으로 유지보수 어려움
-* 리액트 Compiler: 컴파일러가 자동 처리하므로 유지보수 부담 최소화
-
-### 성능 효과
-* 기존 방법: 개발자의 수동 최적화 수준에 의존적
-* 리액트 Compiler: 개발자가 놓칠 수 있는 부분까지 포함한 더 정밀한 최적화
-
-## 미래 전망
-
-### 안정화 로드맵
-1. Beta: 초기 사용자 피드백 수집
-2. Release Candidate (현재): 대부분의 리액트 앱/라이브러리에서 검증
-3. Stable Release: 완전한 안정화 버전
-
-### 생태계 확장
-* SWC 지원: Babel 없이 더 빠른 컴파일
-* Vite, Rsbuild 지원: 다양한 빌드 도구 통합
-* IDE 확장: 개발 환경 통합 (연구 단계)
-
-## 실제 적용 예시
-
-### 최적화 전
-```jsx
-function Post({ post, big }) {
-  const styles = useStyles();
-  const postTitle = useMemo(() => `Title: ${post.title}`, [post]);
-  const titleStyle = useMemo(() => {
-    if (big) {
-      return { fontSize: styles.fontSize.big };
-    } else {
-      return { fontSize: styles.fontSize.small };
-    }
-  }, [big, styles]); // styles 전체 객체 의존성
-
-  return (
-    <section>
-      <Title style={titleStyle}>{postTitle}</Title>
-      <p>{post.body}</p>
-      <LikeButton id={post.id} />
-    </section>
-  );
-}
-```
-
-### 컴파일러 적용 후 (개발자 코드)
-```jsx
-function Post({ post, big }) {
-  const styles = useStyles();
-  const postTitle = `Title: ${post.title}`; // 메모이제이션 제거
-  
-  const titleStyle = big 
-    ? { fontSize: styles.fontSize.big }
-    : { fontSize: styles.fontSize.small }; // 의존성 배열 제거
-
-  return (
-    <section>
-      <Title style={titleStyle}>{postTitle}</Title>
-      <p>{post.body}</p>
-      <LikeButton id={post.id} />
-    </section>
-  );
-}
-```
-
-## 결론
-
-리액트 Compiler는 리액트 개발의 패러다임을 바꾸는 혁신적인 도구입니다:
-
-### 주요 이점
-* 개발자 경험 향상: 수동 최적화 부담 제거
-* 성능 향상: 자동으로 최적화된 효율적인 코드 생성
-* 코드 간소화: 메모이제이션 관련 코드 17% 감소
-* 안정성: 기존 리액트 패러다임 유지하면서 최적화
-
-### 권장사항
-* 리액트 19 프로젝트에서는 적극적으로 도입 검토
-* 기존 프로젝트는 점진적 마이그레이션 계획
-* 리액트의 규칙을 준수하는 코드 작성 습관 중요
-* 충분한 테스트 커버리지 확보 후 도입
 
 # 리액트 19 새로운 훅들
 
