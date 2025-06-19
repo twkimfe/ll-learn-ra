@@ -1,17 +1,26 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 import type { TodoItem } from "@pages/TodoInfo";
+import useAxiosInstance from "@hooks/useAxiosInstance";
 
 function TodoAdd() {
+    const axiosInstance = useAxiosInstance()
+
     const { register, handleSubmit, reset, setFocus,formState: { errors } } = useForm<TodoItem>();
   
-    const addTodo = (formData: TodoItem) => {
+    const addTodo = async (formData: TodoItem) => {
       console.log('API 서버에 등록 요청', formData);
       // TODO API 서버에 등록 요청
-      
-      alert('할일이 등록 되었습니다.');
-      reset();
-      setFocus('title');
+      try {
+          await axiosInstance.post('/todolist', formData)
+
+          alert('할일이 등록 되었습니다.');
+          reset();
+          setFocus('title');
+        } catch(err) {
+          console.error(err);
+          alert('할일 추가에 실패했습니다.')
+        }
     };
 
   return (
