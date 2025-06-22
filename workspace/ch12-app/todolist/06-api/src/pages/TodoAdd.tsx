@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import type { TodoItem } from "@pages/TodoInfo";
 import useAxiosInstance from "@hooks/useAxiosInstance";
 
 function TodoAdd() {
-    const axiosInstance = useAxiosInstance()
+// \todoAdd bug 해결법- 추가 후 todoList로 이동하는 코드 추가(간접적으로 해결)
+    const axiosInstance = useAxiosInstance();
+    const navigate = useNavigate();
 
     const { register, handleSubmit, reset, setFocus,formState: { errors } } = useForm<TodoItem>();
   
@@ -17,6 +19,7 @@ function TodoAdd() {
           alert('할일이 등록 되었습니다.');
           reset();
           setFocus('title');
+          navigate('/list'); // \todoList로 이동
         } catch(err) {
           console.error(err);
           alert('할일 추가에 실패했습니다.')
