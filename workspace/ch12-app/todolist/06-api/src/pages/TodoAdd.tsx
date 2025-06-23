@@ -4,8 +4,10 @@ import type { TodoItem } from "@pages/TodoInfo";
 import useAxiosInstance from "@hooks/useAxiosInstance";
 
 function TodoAdd() {
-// \todoAdd bug 해결법- 추가 후 todoList로 이동하는 코드 추가(간접적으로 해결)
-    const axiosInstance = useAxiosInstance();
+  // React Compiler의 기능을 사용하지 않겠다는 선언(reset()이 제대로 동작하지 않음)
+  'use no memo'
+  const axiosInstance = useAxiosInstance();
+  // \todoAdd bug 해결법- 추가 후 todoList로 이동하는 코드 추가(간접적으로 해결)
     const navigate = useNavigate();
 
     const { register, handleSubmit, reset, setFocus,formState: { errors } } = useForm<TodoItem>();
