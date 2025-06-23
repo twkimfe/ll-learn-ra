@@ -435,6 +435,18 @@
   * 12-1 Todo List
     - 🧑‍💻 [05 리액트 라우터 적용](./workspace-ins/ch12-app/todolist/05-router)
     
+### 16일차(2025.06.19 목)
+#### 오전(3시간)
+* 12장 앱 개발
+  * 12-1 Todo List
+    - 🧑‍💻 [05 리액트 라우터 적용](./workspace-ins/ch12-app/todolist/05-router)
+
+#### 오후(3시간)
+* 🔊 [9장 HTTP 통신과 Ajax](./workspace-ins/ch09-ajax#9장-http-통신과-ajax)
+  * 🔊 [1. HTTP](./workspace-ins/ch09-ajax#1-http)
+  * 🔊 [2. API 테스트](./workspace-ins/ch09-ajax#2-api-테스트)
+    - 🧑‍💻 [06 API 서버 연동](./workspace-ins/ch12-app/todolist/06-api)
+
 # 5. 참고 사이트
 
 ## 온라인 코드 편집기(HTML, CSS, JS)
