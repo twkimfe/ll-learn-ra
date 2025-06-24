@@ -1,12 +1,19 @@
 import { useState } from "react";
 
-function TodoInput() {
+interface TodoInputPropType {
+  addItem: (title: string)=> void;
+}
+
+function TodoInput({ addItem }: TodoInputPropType) {
+  console.log('### TodoInput 호출됨.');
+
   // 제어 컴포넌트 1. state 정의
   const [title, setTitle] = useState('');
 
   // 추가 버튼 click 이벤트 처리
   const handleAdd = () => {
     console.log(`${title} 추가`);
+    addItem(title);
   }
 
   return(
