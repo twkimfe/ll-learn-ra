@@ -273,7 +273,7 @@ HTTP(HyperText Transfer Protocol)는 웹 브라우저와 웹 서버 간 텍스�
   - Auth Type: Bearer Token
   - Token: `{{accessToken}}`
   - Ctrl + S 눌러서 저장
-
+  
 #### 회원 정보 수정 요청시 인증은 부모(컬렉션)에서 지정한 인증 방식으로 변경
 * Collections > Open Market API > 회원 정보 수정 > Authorization
   - Auth Type: Inherit auth from parent
@@ -604,21 +604,24 @@ axios.interceptors.response.use((response) => {
   - 개발자 도구 사용 방법 참고: https://tanstack.com/query/latest/docs/framework/react/devtools
 
 ### 3.5.2 사용 설정
-* App.jsx에 추가
+* main.tsx에 추가
   ```tsx
-  ......
-  import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+  import { StrictMode } from 'react'
+  import { createRoot } from 'react-dom/client'
+  import App from './App.tsx'
+  import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
   import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
   const queryClient = new QueryClient();
 
-  function App() {
-    return (
-      <QueryClientProvider client={ queryClient }>    
-        ......
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <QueryClientProvider client={ queryClient }>
+        <App />
         <ReactQueryDevtools initialIsOpen={ false } />
       </QueryClientProvider>
-    );
-  }
+    </StrictMode>,
+  )
   ```
 
 ### 3.5.3 useQuery
@@ -834,7 +837,7 @@ export default FetchOnRender;
 
 ### 4.2.1 흐름
 1. 컴포넌트가 처음 렌더링될 때 데이터가 보여질 영역을 비운채로 렌더링
-2. useEffect 훅에서 데이터 패칭 요청(자식 컴포넌트에서 필요한 데이터도 동시에 패칭)
+2. 모듈 탑 레벨에서 데이터 패칭 요청(자식 컴포넌트에서 필요한 데이터도 동시에 패칭)
 3. 데이터가 도착하면 상태를 업데이트해서 응답 받은 데이터를 가지고 리렌더링
 4. 자식 컴포넌트가 있다면 Props로 데이터 전달. 자식 컴포넌트는 데이터 패칭 없이 바로 렌더링
 
@@ -922,7 +925,7 @@ function fetchComments() {
   });
 }
 
-// 댓글 목록 조회 API 호출
+// props로 전달받은 댓글 목록 출력
 export function Comments({ comments }: { comments: CommentsRes }) {
   if(!comments){
     return <div>댓글 로딩중...</div>;

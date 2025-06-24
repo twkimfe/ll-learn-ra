@@ -1,3 +1,4 @@
+import useAxiosInstance from "@/hooks/useAxiosInstance";
 import { useState } from "react";
 
 function CommentNew() {
@@ -5,19 +6,16 @@ function CommentNew() {
   // 댓글 내용 저장
   const [content, setContent] = useState('');
 
+  // axios instance
+  const axios = useAxiosInstance();
+
   // API 서버에 댓글 등록 요청
   const requestAddComment = async (formData: FormData) => {
     try{
-      // FormData를 일반 Object로 변환
-      const jsonBody = Object.fromEntries(formData.entries());
-      await fetch('https://fesp-api.koyeb.app/market/posts/1/replies?delay=1000', {
-        headers: {
-          'Client-Id': 'openmarket',
-          'Content-Type': 'application/json', // 요청 바디의 데이터 타입을 서버에 json이라고 알림
-        },
-        method: 'POST',
-        body: JSON.stringify(jsonBody), // 객체를 JSON 문자열로 변환
-      });
+      const response = await axios.post('/posts/1/replies', formData);
+
+      // TODO 댓글 등록 후 댓글 목록 갱신(requestCommentList()를 props로 전달받아서 호출)
+
     }catch(err){
       // alert('게시물 상세 조회에 실패했습니다.\n잠시 후 다시 요청하시기 바랍니다.');
       console.error(err);
@@ -25,8 +23,8 @@ function CommentNew() {
   };
 
   const handleAddComment = (event: React.FormEvent<HTMLFormElement>) => {
+    // TODO 중복 요청 방지(요청 시작 전에 버튼 비활성화, 응답 완료 후에 버튼 활성화)
     event.preventDefault();
-
     const formData = new FormData(event.currentTarget);
     requestAddComment(formData);
   };

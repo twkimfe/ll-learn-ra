@@ -457,6 +457,16 @@
   * 🔊 [3.3 fetch API](./workspace-ins/ch09-ajax#33-fetch-api)
     - 🧑‍💻 [01 Fetch API](./workspace-ins/ch09-ajax/01-board-fetch)
     
+### 18일차(2025.06.24 화)
+#### 오전(3시간)
+* 9장 HTTP 통신과 Ajax
+  * 🔊 [3.4 axios 라이브러리](./workspace-ins/ch09-ajax#34-axios-라이브러리)
+    - 🧑‍💻 [02 Axios 라이브러리](./workspace-ins/ch09-ajax/01-board-axios)
+
+#### 오후(3시간)
+  * 🔊 [3.5 React Query(TanStack Query)](./workspace-ins/ch09-ajax#35-react-querytanstack-query)
+    - 🧑‍💻 [03 React Query 라이브러리](./workspace-ins/ch09-ajax/03-board-reactquery)
+    
 # 5. 참고 사이트
 
 ## 온라인 코드 편집기(HTML, CSS, JS)

@@ -1,7 +1,7 @@
 # 4장 리액트 훅
 * 코드 실행(GitHub Page): <https://febc-13.github.io/React/workspace-ins/index.html#04>
 
-## 리액트 훅이란?
+# 1. 리액트 훅이란?
 
 * 컴포넌트가 렌더링되는 동안에만 사용할 수 있는 특별한 함수
 * 리액트 16.8 버전에 추가됨
@@ -9,11 +9,11 @@
 * 이로 인해 함수형 컴포넌트의 활용도가 높아졌으며, 클래스 컴포넌트보다 코드가 간결하고 유지보수가 용이해 함수형 컴포넌트 사용이 일반화됨
 * 참고: https://ko.react.dev/reference/react/hooks
 
-## useState
+## 1.1 useState
 * 상태값(컴포넌트에서 관리하는 데이터)을 추가하기 위한 훅
 
 ### API
-```jsx
+```tsx
 const [state, setState] = useState(initialState);
 ```
 
@@ -25,7 +25,7 @@ const [state, setState] = useState(initialState);
 * `setState`: 상태값을 변경하는 setter 함수
   - setter를 통해 상태가 변경되면 해당 컴포넌트는 다시 렌더링됨
 
-## useEffect
+## 1.2 useEffect
 * 컴포넌트 생명주기 이벤트를 등록하기 위한 훅
 * 클래스 기반 컴포넌트에서는 아래 메소드를 오버라이드해서 구현
   - `componentDidMount()`: 컴포넌트가 마운트 완료되고 브라우저 DOM 트리에 반영된 후 호출
@@ -42,7 +42,7 @@ const [state, setState] = useState(initialState);
     + 데이터 fetching
 
 ### API
-```jsx
+```tsx
 useEffect(setup, dependencies?);
 ```
 
@@ -57,7 +57,7 @@ useEffect(setup, dependencies?);
   - `dependencies`에 빈 배열을 지정하면 업데이트에서는 호출되지 않음
   - `dependencies`를 지정하면, 해당 값들이 변경될 때만 `setup` 함수가 호출됨  
 
-## useReducer
+## 1.3 useReducer
 
 * `useState`와 비슷하지만, 상태 관리가 더 복잡한 경우에 사용
 * `useState`를 사용할 때 컴포넌트 내부에서 상태 변경 로직을 구현해야 하기 때문에 컴포넌트가 복잡해짐
@@ -70,7 +70,7 @@ useEffect(setup, dependencies?);
 * 리듀서를 사용하여 애플리케이션 전역 수준의 상태를 관리하는 라이브러리가 `Redux`
 
 ### API
-```jsx
+```tsx
 function reducer(state, action){ ... }
 const [state, dispatch] = useReducer(reducer, initialArg, init?);
 ```
@@ -90,7 +90,7 @@ const [state, dispatch] = useReducer(reducer, initialArg, init?);
 
 #### 코드 크기
 * `useReducer`를 사용하면 `reducer` 함수와 `dispatch` 액션을 작성해야 하기 때문에 기본적으로 코드 크기가 `useState`를 사용할 때보다 많아짐
-  ```jsx
+  ```tsx
   const TodoReducer = function(state, action) {
     // 상태 변경 로직
   };
@@ -98,7 +98,7 @@ const [state, dispatch] = useReducer(reducer, initialArg, init?);
   ```
 
 * 여러 이벤트 핸들러가 비슷한 상태 관리 로직을 가지고 있다면 `reducer` 함수에 공통으로 작성해서 코드를 줄일 수 있음
-  ```jsx
+  ```tsx
   const TodoReducer = function(state, action){
     const index = state.findIndex(item => item._id === action.item._id);
     switch(action.type){
@@ -129,7 +129,7 @@ const [state, dispatch] = useReducer(reducer, initialArg, init?);
 
 #### 개인 선호도에 따름
 
-## useRef
+## 1.4 useRef
 
 * 컴포넌트가 다시 렌더링되더라도 기존 상태값을 유지하는 변수를 생성
 * 함수 내부에 정의하는 지역 변수는 컴포넌트가 다시 렌더링되면(함수 재호출) 값이 초기화 됨
@@ -138,7 +138,7 @@ const [state, dispatch] = useReducer(reducer, initialArg, init?);
   - 포커스, 미디어 재생, 애니메이션 실행 등과 같은 작업은 `useRef`를 사용해 브라우저 DOM에 직접 접근하여 제어해야 함
 
 ### API
-```jsx
+```tsx
 const ref = useRef(initialValue);
 ```
 
@@ -156,7 +156,7 @@ const ref = useRef(initialValue);
   - 리렌더링이 자주 되므로 오버헤드 발생
 
 ##### 예시
-```jsx
+```tsx
 function App(){
   const [msg, setMsg] = useState('');
   return (
@@ -179,7 +179,7 @@ function App(){
   - 리렌더링이 되지 않으므로 성능 최적화
 
 ##### 예시
-```jsx
+```tsx
 function Counter() {
   const step = useRef(1);
 
@@ -195,11 +195,11 @@ function Counter() {
 }
 ```
 
-## useMemo
+## 1.5 useMemo
 * 지정한 함수를 호출하여 반환받은 결과값을 내부에 저장(캐싱)하는 함수
 
 ### API
-```jsx
+```tsx
 const calculateValue = function(){ ... };
 const cachedValue = useMemo(calculateValue, dependencies);
 ```
@@ -222,7 +222,7 @@ const cachedValue = useMemo(calculateValue, dependencies);
 * 리렌더링 될때 눈에띄게 지연이 발생하는 경우 사용
 
 #### API
-```jsx
+```tsx
 const MemoizedComponent = React.memo(SomeComponent, arePropsEqual?)
 ```
 
@@ -236,21 +236,19 @@ const MemoizedComponent = React.memo(SomeComponent, arePropsEqual?)
 ##### 리턴값
 * memoize된 `SomeComponent`
 
-### React.memo 사용 시점
+#### React.memo 사용 시점
 
 * 컴포넌트 호출 시 시간이 오래 걸리는 연산 작업이 있는 경우  
   - memoize된 컴포넌트를 재사용하면 컴포넌트 호출 횟수를 줄일 수 있음
 * 리렌더링될 때 props가 자주 변경되지 않는 컴포넌트
   - props가 자주 변경되는 컴포넌트에는 props를 비교하는 로직이 불필요하게 동작하므로, 오히려 성능에 좋지 않음
 
----
+#### 고차 함수 (Higher-Order Function)
 
-### 고차 함수 (Higher-Order Function)
-
-#### 정의  
+##### 정의  
 * 함수를 인자로 전달받거나 함수를 반환하는 함수.
 
-#### 예시  
+##### 예시  
 * `Array.prototype.forEach`, `Array.prototype.map`, `Array.prototype.findIndex`, `Array.prototype.filter` 등.  
 
 * 리액트에서의 활용  
@@ -258,16 +256,16 @@ const MemoizedComponent = React.memo(SomeComponent, arePropsEqual?)
   - 중복되는 로직을 고차 함수에 정의하여 컴포넌트별로 재사용 가능.
   - `React.memo`가 대표적인 고차 함수.
 
-## useCallback
+## 1.6 useCallback
 
 * 컴포넌트 내부에서 정의한 함수를 캐시
 * 컴포넌트가 다시 렌더링되더라도 함수가 다시 생성되지 않고 캐시된 함수를 사용
 * 부모가 정의한 이벤트 리스너를 자식에게 props로 전달할 때, 부모가 리렌더링되는 경우 자식도 리렌더링되지만, 이때 props가 바뀌지 않으면 자식은 기존 DOM을 재사용하도록 메모이제이션할 수 있음
-  - 이벤트 리스너를 컴포넌트 내부에서 정의하면 부모가 리렌더링될 때 리스너 함수도 새로 생성되므로 자식에 전달하는 props가 바뀌어 메모이제이션이 되지 않고 자식도 리렌더링이 발생
+  - 이벤트 리스너를 컴포넌트 내부에서 정의하면 부모 컴포넌트가 리렌더링될 때 리스너 함수도 새로 생성되므로 자식에 전달하는 props가 바뀌어 메모이제이션이 되지 않고 자식도 리렌더링이 발생
   - `useCallback()`을 사용하면 부모 컴포넌트가 재호출되어도 리스너가 수정되지 않고 유지되므로 자식도 기존 DOM을 재사용하여 성능이 향상됨
 
 ### API
-```jsx
+```tsx
 const cachedFn = useCallback(fn, dependencies);
 ```
 
@@ -286,7 +284,7 @@ const cachedFn = useCallback(fn, dependencies);
 * `useCallback`은 함수를 인자로 전달하고, 전달된 함수를 memoize 함
 * 차이점: 함수의 리턴 값 vs. 컴포넌트 vs. 함수 자체
 
-## Custom Hook
+## 1.7 Custom Hook
 * 개발자가 직접 작성하는 리액트 훅으로, 리액트의 내장 훅(`useState`, `useEffect` 등)을 이용해 특정 로직을 재사용 가능하게 만든 함수
 * 여러 컴포넌트에서 공통으로 사용할 수 있는 상태 관리나 사이드 이펙트 로직을 하나의 훅으로 묶을 수 있음
 * 리액트의 내장 훅은 일반 함수에서는 사용할 수 없으므로, 내장 훅을 활용하려면 커스텀 훅을 작성해야 함
@@ -301,7 +299,7 @@ const cachedFn = useCallback(fn, dependencies);
 4. 유지보수성: 로직이 한 곳에 모여있어 수정이 용이함
 5. 추상화: 복잡한 로직을 간단한 인터페이스로 추상화할 수 있음
 
-## 훅 사용 시 주의사항
+## 1.8 훅 사용 시 주의사항
 * 클래스 기반 컴포넌트에서는 훅을 사용할 수 없음
   - 훅은 함수형 컴포넌트 전용이며, 상태 관리 및 생명 주기 관련 기능을 함수형 컴포넌트 내에서만 사용할 수 있음
 * 훅은 함수 컴포넌트의 최상위에서만 호출해야 함
@@ -310,114 +308,22 @@ const cachedFn = useCallback(fn, dependencies);
 * 훅은 항상 동일한 순서로 호출되어야 함
   - 각 렌더링마다 동일한 순서로 훅이 호출되어야 하므로, 조건문이나 반복문 내에서 훅을 호출하는 패턴을 피해야 함
 
-# 리액트 컴파일러
+# 2. 리액트 컴파일러
+* 참고: https://ko.react.dev/learn/react-compiler
 
-* 리액트 컴파일러 참고
-  - https://ko.react.dev/learn/react-compiler
-
-## 리액트 컴파일러란?
+## 2.1 리액트 컴파일러란?
 
 * 리액트 19와 함께 공개된 자동 최적화 도구로, 빌드 시점에 컴포넌트를 분석하여 자동으로 메모이제이션을 적용
 * 개발자가 수동으로 `useMemo`, `useCallback`, `React.memo`를 사용하지 않아도 최적화된 코드를 생성
-* Meta의 instagram.com을 비롯한 여러 서비스에서 사용 중
 
-## 리액트 컴파일러의 목적
+## 2.2 컴파일러 동작 원리
+* React Compiler Playground에서 확인
+* https://playground.react.dev
 
-### 기존 리액트의 한계
-* 리액트는 상태가 변경될 때마다 컴포넌트를 리렌더링하는 반응적(reactive) 특성을 가짐
-* 이로 인해 불필요한 리렌더링이 자주 발생하여 성능 저하 문제가 생김
-* 개발자가 수동으로 메모이제이션 API를 사용해야 하는 부담
-
-### 해결 방안
-* 의미 있는 변화가 있을 때만 리렌더링 수행
-* 객체 참조 변경이 아닌 실제 값의 변화를 감지하여 최적화
-
-## 주요 기능
-
-### 1. 자동 메모이제이션
-* `useMemo`, `useCallback`, `React.memo`를 자동으로 적용
-* 의존성 배열 관리를 컴파일러가 자동으로 처리
-* 불필요한 재계산 및 재생성 방지
-
-### 2. 정밀한 의존성 추적
-* 객체 전체가 아닌 실제 사용되는 속성만 추적
-* 불필요한 반응성 제거
-* 더 정확한 최적화 적용
-
-### 3. JSX 레벨 최적화
-* JSX 요소들을 개별적으로 캐싱
-* 각 요소가 자신의 의존성에만 반응하도록 최적화
-* 컴포넌트 트리의 계단식 리렌더링 방지
-
-## 컴파일러 동작 원리
-
-### 컴파일 전 코드 예시
-```jsx
-function TodoList({ visibility, themeColor }) {
-  const [todos, setTodos] = useState(initialTodos);
-  const handleChange = todo => setTodos(todos => getUpdated(todos, todo));
-  const filtered = getFiltered(todos, visibility);
-
-  return (
-    <div>
-      <ul>
-        {filtered.map(todo => (
-          <Todo key={todo.id} todo={todo} onChange={handleChange} />
-        ))}
-      </ul>
-      <AddTodo setTodos={setTodos} themeColor={themeColor} />
-    </div>
-  );
-}
-```
-
-### 컴파일 후 코드 개념
-```jsx
-function TodoList({ visibility, themeColor }) {
-  const $ = useMemoCache(16); // 캐시 배열 생성
-  const [todos, setTodos] = useState(initialTodos);
-  
-  // handleChange 함수 메모이제이션
-  let handleChange;
-  if ($[0] === Symbol.for("react.memo_cache_sentinel")) {
-    handleChange = todo => setTodos(todos => getUpdated(todos, todo));
-    $[0] = handleChange;
-  } else {
-    handleChange = $[0];
-  }
-  
-  // filtered 값 메모이제이션
-  let filtered;
-  if ($[1] !== todos || $[2] !== visibility) {
-    filtered = getFiltered(todos, visibility);
-    $[1] = todos;
-    $[2] = visibility;
-    $[3] = filtered;
-  } else {
-    filtered = $[3];
-  }
-  
-  // JSX 요소들 개별 메모이제이션
-  // ... 각 JSX 요소가 자신의 의존성에 따라 캐싱됨
-  
-  return (/* 최적화된 JSX */);
-}
-```
-
-## 최적화 대상
-1. 컴포넌트의 계단식 리렌더링 방지: 부모 컴포넌트 변경 시 자식들의 불필요한 리렌더링 방지
-2. 비용이 큰 계산 건너뛰기: 값이 변경되지 않은 경우 expensive 연산 생략
-3. useEffect 훅의 의존성 메모이제이션: useEffect 등의 무한 루프 방지
-
-## 설치 및 사용법
+## 2.3 설치 및 사용법
 
 ### 패키지 설치
 ```bash
-# 리액트 19+
-npm install -D babel-plugin-react-compiler@rc
-
-# 리액트 17, 18
-npm install react-compiler-runtime
 npm install -D babel-plugin-react-compiler@rc
 ```
 
@@ -432,10 +338,7 @@ export default defineConfig({
     react({
       babel: {
         plugins: [
-          ["babel-plugin-react-compiler", {
-            // React 17, 18 사용 시
-            runtimeModule: "react-compiler-runtime"
-          }]
+          ["babel-plugin-react-compiler", {}]
         ]
       }
     })
@@ -444,11 +347,11 @@ export default defineConfig({
 });
 ```
 
-## 리액트 컴파일러를 적용하지 않는 방법
+### 리액트 컴파일러를 적용하지 않는 방법
 * "use no memo" 지시어 추가
   - "use no memo"는 React 컴파일러에 의해 컴파일되지 않도록 컴포넌트와 Hooks를 선택적으로 제외하는 지시어
 
-## 사용 시 주의사항
+## 2.4 사용 시 주의사항
 
 ### 리액트의 규칙 준수 필요
 * 컴포넌트와 Hook은 순수함수여야 함
@@ -457,9 +360,10 @@ export default defineConfig({
 * 렌더링 중 DOM 조작 금지
 * 리액트의 규칙 참고: https://ko.react.dev/reference/rules
 
-## 개발 도구 지원
+## 2.5 개발 도구 지원
 
 ### ESLint 통합
+* eslint-plugin-react-hooks 6.0 이상에서 지원
 ```bash
 npm install -D eslint-plugin-react-hooks@^6.0.0-rc.1
 ```
@@ -489,109 +393,69 @@ export default tseslint.config(
 * 브라우저 개발자 도구의 Components 탭에서 컴파일러로 최적화된 컴포넌트는 "Memo ✨" 배지로 표시
 * 메모이제이션 상태를 시각적으로 확인 가능
 
-# 리액트 19 새로운 훅들
+# 3. 리액트 19 새로운 훅들
 
 리액트 19에서는 서버 컴포넌트와 폼 처리를 위한 새로운 훅들이 추가됨
 
-## use
+## 3.1 use
 
 * Promise와 Context를 조건부로 읽을 수 있는 새로운 API
 * 기존 훅과 달리 조건문 안에서도 사용 가능
 * Suspense와 연동하여 비동기 데이터 처리를 간소화
 
 ### API
-```jsx
+```tsx
 const value = use(resource);
 ```
 
 #### 매개변수
 * `resource`: Promise 또는 Context 객체
-  - Promise인 경우: 해당 Promise가 완료될 때까지 컴포넌트를 중단(suspend)
   - Context인 경우: Context의 현재 값을 반환
+  - Promise인 경우: 해당 Promise가 완료될 때까지 컴포넌트를 중단(suspend)
 
 #### 리턴값
 * Promise의 결과값 또는 Context의 값
 
-### 예시
-```jsx
-function UserProfile({ userPromise }) {
-  const user = use(userPromise); // Promise가 완료될 때까지 기다림
+
+### 사용법
+#### use를 사용하여 Context 참조하기
+* Context를 use에 전달하면 useContext와 유사하게 Context 값을 읽을 수 있음
+* useContext는 컴포넌트나 훅의 탑레벨에서만 사용 가능하지만 use는 조건문, 반복문, 내부 함수 안에서도 사용 가능
+
+#### 예시
+* Context를 읽는 경우
+```tsx
+function Left3({ showCounter = true }) {
+  let counterContext = null;
+  if(showCounter) {
+    // use를 이용하면 조건부로 컨텍스트 구독이 가능하므로 불필요한 리렌더링을 방지할 수 있음
+    counterContext = use(CounterContext);
+  }
   
   return (
     <div>
-      <h1>{user.name}</h1>
-      <p>{user.email}</p>
+      <h3>Left3</h3>
+      <span>{ counterContext?.count }</span>
     </div>
   );
 }
-
-// 조건부 사용도 가능
-function ConditionalData({ condition, dataPromise }) {
-  if (condition) {
-    const data = use(dataPromise);
-    return <div>{data}</div>;
-  }
-  return <div>조건이 맞지 않음</div>;
-}
 ```
 
-## useActionState
+#### use를 사용하여 Promise를 처리하기
+* Promise를 use에 전달하면, Promise가 resolve될 때 그 결과값을 읽을 수 있음
+* Promise가 reject되면 Error Boundary로 오류를 표시하거나, Promise.catch로 대체값을 제공할 수 있음
+* Promise가 pending 상태일 때는 Suspense를 이용해 로딩 중 화면을 표시할 수 있음
+* 이 패턴은 주로 서버 컴포넌트에서 Promise를 반환하고, 클라이언트 컴포넌트에서 서버 함수의 비동기 결과를 자연스럽게 읽는 용도로 사용함
+* 클라이언트 컴포넌트에서 직접 Promise를 만들어 use에 전달하는 것은 일반적으로 권장되지 않으며, 이 경우 기존의 useEffect와 useState 패턴을 사용하는 것이 더 적합함
 
-* 폼 액션의 상태를 관리하는 훅
-* 폼 제출 후 결과와 pending 상태를 쉽게 관리
-* 서버 액션과 함께 사용하여 폼 처리를 간소화
-
-### API
-```jsx
-const [state, formAction, isPending] = useActionState(action, initialState, permalink?);
-```
-
-#### 매개변수
-* `action`: 폼이 제출되거나 버튼이 클릭될 때 호출될 함수
-* `initialState`: 초기 상태값
-* `permalink` (선택): SEO를 위한 고유 페이지 URL
-
-#### 리턴값
-* `state`: 현재 상태값
-* `formAction`: 폼의 action 속성에 전달할 함수
-* `isPending`: 액션이 실행 중인지 여부
-
-### 예시
-```jsx
-async function updateName(previousState, formData) {
-  try {
-    const name = formData.get('name');
-    // 서버에 이름 업데이트 요청
-    await updateUserName(name);
-    return { message: '이름이 성공적으로 업데이트되었습니다.' };
-  } catch (error) {
-    return { message: '오류가 발생했습니다.' };
-  }
-}
-
-function UserForm() {
-  const [state, formAction, isPending] = useActionState(updateName, { message: '' });
-
-  return (
-    <form action={formAction}>
-      <input type="text" name="name" required />
-      <button type="submit" disabled={isPending}>
-        {isPending ? '저장 중...' : '저장'}
-      </button>
-      {state.message && <p>{state.message}</p>}
-    </form>
-  );
-}
-```
-
-## useFormStatus
+## 3.2 useFormStatus
 
 * 상위 form 요소의 상태 정보를 제공하는 훅
 * 폼이 제출 중인지, 어떤 데이터가 제출되었는지 등을 확인
 * 자식 컴포넌트에서 부모 폼의 상태에 접근할 때 유용
 
 ### API
-```jsx
+```tsx
 const { pending, data, method, action } = useFormStatus();
 ```
 
@@ -605,7 +469,7 @@ const { pending, data, method, action } = useFormStatus();
 * `action`: form의 action 속성에 전달된 함수 참조
 
 ### 예시
-```jsx
+```tsx
 function SubmitButton() {
   const { pending } = useFormStatus();
   
@@ -623,7 +487,7 @@ function MyForm() {
   }
 
   return (
-    <form action={handleSubmit}>
+    <form action={ handleSubmit }>
       <input type="text" name="username" />
       <SubmitButton /> {/* 자식 컴포넌트에서 폼 상태 접근 */}
     </form>
@@ -631,15 +495,77 @@ function MyForm() {
 }
 ```
 
-## useOptimistic
+## 3.3 useActionState
+
+* 폼 액션의 상태를 관리하는 훅
+* 폼 제출 후 결과와 pending 상태를 쉽게 관리
+
+### API
+```tsx
+const [state, formAction, isPending] = useActionState(action, initialState, permalink?);
+```
+
+#### 매개변수
+* `action`: 폼이 제출되거나 버튼이 클릭될 때 호출될 함수
+* `initialState`: 초기 상태값
+* `permalink` (선택): SEO를 위한 고유 페이지 URL
+
+#### 리턴값
+* `state`: 현재 상태값
+* `formAction`: 폼의 action 속성에 전달할 함수
+* `isPending`: 액션이 실행 중인지 여부
+
+### 예시
+```tsx
+// 이전 상태를 받고 새로운 상태를 반환
+async function updateName(previousState, formData) {
+  try {
+    const name = formData.get('name');
+    // 서버에 이름 업데이트 요청
+    await updateUserName(name);
+    return { message: '이름이 성공적으로 업데이트되었습니다.' };
+  } catch (error) {
+    return { message: '오류가 발생했습니다.' };
+  }
+}
+
+function UserForm() {
+  const [state, formAction, isPending] = useActionState(updateName, { message: '' });
+
+  return (
+    <form action={ formAction }>
+      <input type="text" name="name" required />
+      <button type="submit" disabled={isPending}>
+        {isPending ? '저장 중...' : '저장'}
+      </button>
+      {state.message && <p>{state.message}</p>}
+    </form>
+  );
+}
+```
+
+### useFormState와 useActionState 차이점
+
+#### useFormState
+* 폼의 입력값, 에러 메시지 등 폼 내부 상태를 직접 관리할 때 주로 사용
+* setState로 상태를 직접 변경하며, 주로 클라이언트 컴포넌트에서 활용
+* 비동기 처리나 폼 제출 결과 관리가 필요할 때는 별도의 로직이 필요
+
+#### useActionState
+* 폼 제출 등 액션의 결과와 pending 상태를 함께 관리할 수 있는 훅
+* formAction에 액션 함수를 전달하여 서버 액션과 쉽게 연동
+* isPending 값으로 비동기 처리 상태를 간편하게 확인 가능
+* 서버 컴포넌트와 클라이언트 컴포넌트 모두에서 사용할 수 있으며, 폼 제출 후 결과 메시지, 서버 응답 등 액션 중심의 폼 처리에 적합
+
+## 3.4 useOptimistic
 
 * 비동기 요청 중 낙관적 UI 업데이트를 제공하는 훅
 * 서버 응답을 기다리지 않고 UI를 먼저 업데이트하여 더 나은 사용자 경험 제공
 * 요청이 실패할 경우 자동으로 이전 상태로 롤백
 
 ### API
-```jsx
-const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);
+```tsx
+const [optimisticState, setOptimisticState] = useOptimistic(state, updateFn);
 ```
 
 #### 매개변수
@@ -648,40 +574,58 @@ const [optimisticState, addOptimistic] = useOptimistic(state, updateFn);
 
 #### 리턴값
 * `optimisticState`: 낙관적으로 업데이트된 상태값
-* `addOptimistic`: 낙관적 업데이트를 트리거하는 함수
+* `setOptimisticState`: 낙관적 업데이트를 트리거하는 함수
 
 ### 예시
-```jsx
-function LikeButton({ postId, initialLikes }) {
-  const [likes, setLikes] = useState(initialLikes);
-  const [optimisticLikes, addOptimisticLike] = useOptimistic(
-    likes,
-    (currentLikes, amount) => currentLikes + amount
-  );
-
-  async function handleLike() {
-    // 즉시 UI 업데이트 (낙관적)
-    addOptimisticLike(1);
-    
-    try {
-      // 서버에 실제 요청
-      const newLikes = await likePost(postId);
-      setLikes(newLikes);
-    } catch (error) {
-      // 실패 시 자동으로 이전 상태로 롤백됨
-      console.error('좋아요 실패:', error);
-    }
+```tsx
+function TodoList() {
+  const axios = useAxiosInstance();
+  
+  const fetchList = async () => {
+    // API 서버에 목록 조회 요청
+    ...
   }
 
-  return (
-    <button onClick={handleLike}>
-      ❤️ {optimisticLikes}
-    </button>
+  const [data, setData] = useState<TodoList | null>(null);
+  const [optimisticData, setOptimisticData] = useOptimistic(
+    data,
+    (data, action: {_id: number, newImportant: boolean}) => data ? {
+        ...data,
+        items: data.items.map(item => item._id !== action._id ? item : { ...item, important: action.newImportant })
+      } : data
   );
+
+  // 중요도 버튼 클릭(토글)
+  const handleToggleImportant = async (_id: number) => {
+    try {
+      const newImportant = !data?.items.find(item => item._id === _id)?.important;
+
+      // 즉시 UI 업데이트 (낙관적)
+      setOptimisticData({_id, newImportant});
+
+      await axios.patch(`/todolist/${_id}`, { 
+        important: newImportant 
+      });
+
+      // 성공시 원본 상태 업데이트
+      fetchList();
+    } catch(err) {
+      console.error(err);
+    }
+  };
+  ...
 }
 ```
 
-### 새로운 훅들의 특징
+### 실제 사용 시 주의사항 및 동작 흐름
+
+* 낙관적 업데이트 후 서버 응답 데이터로 원본 상태를 반드시 갱신해야 함
+  - 서버 patch 성공 시, 서버에서 받은 최신 데이터로 원본 상태(state)를 업데이트해야 함
+  - 그렇지 않으면, useOptimistic이 원본 상태로 리셋되면서 UI가 다시 이전 값으로 돌아감
+* 에러가 발생하면 자동으로 롤백됨
+  - 서버 요청이 실패하면 원본 상태는 바뀌지 않으므로, 낙관적 UI가 자동으로 원래대로 돌아감
+
+## 3.5 새로운 훅들의 특징
 
 * 서버 컴포넌트 지원: 리액트 19의 새로운 훅들은 서버 컴포넌트와 함께 작동하도록 설계됨
 * 향상된 폼 처리: `useActionState`와 `useFormStatus`는 폼 제출과 상태 관리를 크게 개선
