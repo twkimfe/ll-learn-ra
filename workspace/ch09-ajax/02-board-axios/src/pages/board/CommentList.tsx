@@ -43,7 +43,6 @@ function CommentList() {
     } catch (err) {
       setError(err as Error);
       setData(null)
-      console.error(err);
       // alert('게시물 상세 조회에 실패했습니다.\n잠시 후 다시 요청하시기 바랍니다.')
     } finally {
       // 성공, 실패와 상관 없이 로딩 상태를 false로 지정

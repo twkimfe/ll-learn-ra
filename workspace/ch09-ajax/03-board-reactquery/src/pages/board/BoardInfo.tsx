@@ -9,7 +9,7 @@ function BoardInfo() {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['posts', 1],
-    queryFn: ()=> axios.get('/posts/1?delay=1000'), // 여기에는 await 추가하면 안됨
+    queryFn: ()=> axios.get('/posts/1'), // 여기에는 await 추가하면 안됨
     select: (response: { data: BoardInfoResType } ) => response.data.item,
   })
 
