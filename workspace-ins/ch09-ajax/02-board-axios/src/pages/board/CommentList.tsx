@@ -32,7 +32,6 @@ function CommentList() {
 
       const response = await axios.get<ReplyListResType>('/posts/1/replies', {
         params: {
-          delay: 1000,
           // page: 3,
           // limit: 10,
         }
@@ -44,7 +43,6 @@ function CommentList() {
     }catch(err){
       setError(err as Error);
       setData(null);
-      console.error(err);
     }finally{
       // 성공, 실패와 상관 없이 로딩 상태를 false로 지정
       setIsLoading(false);

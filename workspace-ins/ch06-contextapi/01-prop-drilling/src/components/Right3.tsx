@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 
-function Right3() {
+function Right3({ countUp }: { countUp: (step: number) => void }) {
   useEffect(()=>{
     console.log('#### Right3 렌더링.');
   });
+
   return (
     <div>
       <h3>Right3</h3>
-      <button onClick={ () => {} }>+1</button>
+      <button onClick={ () => countUp(1) }>+1</button>
     </div>
   );
 }

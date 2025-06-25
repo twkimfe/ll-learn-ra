@@ -18,7 +18,6 @@ function CommentNew() {
 
     }catch(err){
       // alert('게시물 상세 조회에 실패했습니다.\n잠시 후 다시 요청하시기 바랍니다.');
-      console.error(err);
     }
   };
 
