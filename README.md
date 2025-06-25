@@ -469,6 +469,9 @@
     
 # 5. 참고 사이트
 
+## 초보자를 위한 리액트
+* <https://react.vlpt.us>
+
 ## 온라인 코드 편집기(HTML, CSS, JS)
 * CodePen: <https://codepen.io>
 
@@ -497,14 +500,11 @@
 ## 정규표현식 테스트
 * <https://regexr.com>
 
-## 초보자를 위한 리액트
-* <https://react.vlpt.us>
-
 ## Recoil
 * <https://recoiljs.org/ko>
 
 ## Zustand
-* <https://docs.pmnd.rs/zustand>
+* <https://zustand.docs.pmnd.rs>
 
 ## Redux (한국어)
 * <https://ko.redux.js.org>

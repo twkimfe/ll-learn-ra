@@ -3,7 +3,7 @@
 
 ## 컴포넌트 생명 주기
 
-<img src="https://raw.githubusercontent.com/uzoolove/febc11-react/main/images/lifecycle.png">
+<img src="https://raw.githubusercontent.com/FEBC-13/React/refs/heads/main/images/lifecycle.png">
 
 ### 1 mounting
 * 컴포넌트가 처음으로 DOM에 추가되고 렌더링 되는 단계

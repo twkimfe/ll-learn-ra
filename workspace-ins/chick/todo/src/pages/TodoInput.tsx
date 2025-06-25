@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-function TodoInput() {
+interface TodoInputPropType {
+  addItem: (title: string) => void;
+}
+
+function TodoInput({ addItem }: TodoInputPropType) {
 
   console.log('### TodoInput 호출됨.');
 
@@ -10,7 +14,7 @@ function TodoInput() {
   // 추가 버튼 클릭 이벤트 처리
   const handleAdd = () => {
     console.log(`${title} 추가`);
-    
+    addItem(title);
   };
 
   return (

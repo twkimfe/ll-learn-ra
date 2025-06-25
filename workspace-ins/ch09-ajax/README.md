@@ -672,10 +672,12 @@ useQuery(options)
 
 * staleTime: 조회한 데이터가 fresh에서 stale 상태로 변경되는데 걸리는 시간(default 0). fresh 상태에서는 동일한 요청에 대해 서버에 요청을 보내지 않고 캐시된 데이터를 반환
 * gcTime: 캐시된 데이터가 얼마동안 사용되지 않으면 제거할지 지정(default 5분)
-* refetchOnMount: 데이터가 stale 상태일 경우 마운트 시 마다 재요청을 할지 여부(default true). "always"로 지정할 경우 fresh 상태일때도 마운트 시 마다 재요청 함.
-* refetchOnWindowFocus: 브라우저가 화면에서 보이지 않다가 다시 보이는 경우 재요청을 할 것인지 여부(default true). "always"로 지정하면 fresh 상태에서도 윈도우 포커싱이 될 때마다 재요청
-* enabled: false일 경우 쿼리를 실행하지 않음(default true)
-* retry: 실패한 쿼리를 재시도 할지 여부나 횟수(default 3)
+* refetchOnMount: 데이터가 stale 상태일 경우 마운트 시 마다 재요청을 할지 여부(default true)"always"로 지정할 경우 fresh 상태일때도 마운트 시 마다 재요청 함
+* refetchOnWindowFocus: 브라우저 탭이 화면에서 보이지 않다가 다시 보이는 경우 재요청을 할 것인지 여부(default true). "always"로 지정하면 fresh 상태에서도 윈도우 포커싱이 될 때마다 재요청
+* refetchInterval: 지정한 시간마다(ms) 자동으로 queryFn을 호출(default false)
+* refetchIntervalInBackground: 브라우저 탭이 화면에서 보이지 않을 때도 refetchInterval을 적용할지 여부(default false)
+* enabled: false일 경우 queryFn을 실행하지 않음(default true)
+* retry: 실패한 queryFn을 재시도 할지 여부나 횟수(default 3)
   - true: 무한 재시도
   - false: 재시도 하지 않음
   - 정수: 재시도 횟수
@@ -720,7 +722,7 @@ useQuery(options)
   ```tsx
   const queryClient = useQueryClient();
   // 새로운 댓글 작성시 3번 게시물의 댓글 목록을 무효화 시키고 서버에서 다시 가져옴
-  queryClient.invalidateQueries({ queryKey: ['posts', 3, 'comments'] });
+  queryClient.invalidateQueries({ queryKey: ['posts', 3, 'replies'] });
   ```
 
 * 참고: https://tanstack.com/query/latest/docs/reference/QueryClient/#queryclientinvalidatequeries
