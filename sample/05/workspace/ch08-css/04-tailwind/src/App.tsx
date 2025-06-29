@@ -1,18 +1,14 @@
-import Login from "@pages/auth/Login";
+import Button from "@/components/ui/Button";
 
 function App(){
   return (
     <>
-      <h1 className="bg-gray-text-blue">04 Tailwind CSS</h1>
+      <h1>04 Tailwind CSS</h1>
 
-      <div className="container">
-        <button type="button">그냥 버튼</button>
-        <button type="button" className="bg-blue-text-red">파란 배경의 빨간 버튼</button>
-        <button type="button" className="bg-yellow-text-red">노란 배경의 빨간 버튼</button>
-        <button type="button" className="bg-gray-text-blue">회색 배경의 파란 버튼</button>
-      </div>
-      
-      <Login />
+      <Button type="button">그냥 버튼</Button>
+      <Button type="button" bg="blue" color="red">파란 버튼</Button>
+      <Button type="submit" bg="gray" color="blue">submit 버튼</Button>
+
     </>
   );
 }

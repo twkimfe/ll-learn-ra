@@ -544,9 +544,9 @@ function UserForm() {
 }
 ```
 
-### useFormState와 useActionState 차이점
+### useFormStatus와 useActionState 차이점
 
-#### useFormState
+#### useFormStatus
 * 폼의 입력값, 에러 메시지 등 폼 내부 상태를 직접 관리할 때 주로 사용
 * setState로 상태를 직접 변경하며, 주로 클라이언트 컴포넌트에서 활용
 * 비동기 처리나 폼 제출 결과 관리가 필요할 때는 별도의 로직이 필요

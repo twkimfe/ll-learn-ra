@@ -4,21 +4,52 @@
 # 1 기본 CSS 적용 방법
 * CSS 파일을 React 컴포넌트에서 직접 import 해서 사용
 * 기본적인 사용 방법이며, 규모가 작은 프로젝트에서 간편하게 사용
-```tsx
-import './App.css';
 
-function App(){
-  return (
-    <>
-      <h1>CSS 사용</h1>
-      <button type="button" className="button">그냥 버튼</button>
-      <button type="button" className="button blue-red-btn">파란 배경의 빨간 글자</button>
-      <button type="button" className="button yellow-red-btn">노란 배경의 빨간 글자</button>
-      <button type="button" className="button gray-blue-btn">회색 배경의 파란 글자</button>
-    </>
-  );
-}
-```
+* App.css
+  ```css
+  /* App 컴포넌트 스타일 */
+  .container {
+    width: 300px;
+    margin: 10px auto;
+  }
+
+  /* 파란 배경의 빨간 글자 */
+  .bg-blue-text-red{
+    background-color: blue;
+    color: red;
+  }
+
+  /* 노란 배경의 빨간 글자 */
+  .bg-yellow-text-red{
+    background-color: yellow;
+    color: red;
+  }
+
+  /* 회색 배경의 파란 글자 */
+  .bg-gray-text-blue{
+    background-color: lightgray;
+    color: darkblue;
+  }
+  ```
+
+* App.tsx
+  ```tsx
+  import './App.css';
+
+  function App(){
+    return (
+      <>
+        <h1>CSS 사용</h1>
+        <div className="container">
+          <button type="button">기본 버튼</button>
+          <button type="button" className="bg-blue-text-red">파란 배경의 빨간 버튼</button>
+          <button type="button" className="bg-yellow-text-red">노란 배경의 빨간 버튼</button>
+          <button type="button" className="bg-gray-text-blue">회색 배경의 파란 버튼</button>
+        </div>
+      </>
+    );
+  }
+  ```
 
 # 2 CSS 모듈
 * 프로젝트 규모가 커지면서 여러개의 CSS 파일을 사용하다 보면 동일한 이름의 클래스가 중복 정의될 수 있음.
@@ -32,61 +63,52 @@ function App(){
 * 보통 컴포넌트당 CSS 모듈을 작성하므로 스타일을 유지보수하기 편해짐
 
 ## 2.2 사용 방법
-### 2.2.1 CSS 파일명
+### 2.2.1 CSS 파일명 수정
 * css 파일 확장자 앞부분에 .module을 추가
   ```
   App.module.css
   ```
 
-### 2.2.2 CSS 모듈 파일 import
-```tsx
-import styles from './App.module.css';
-```
+### 2.2.2 CSS 모듈 사용
+* import한 css 모듈은 css 파일의 클래스를 속성으로 가지고 있는 객체처럼 사용 가능
+  ```tsx
+  import styles from './App.module.css';
+  ...
+  <div className={styles.container}>
+  ```
 
-### 2.2.3 스타일 적용 예시
+### 2.2.3 번들링 작업
+* 번들링시 css 모듈의 클래스명에 해시값이 자동으로 추가
 * App.module.css
   ```css
-  .title {
-    color: blue;
-    font-size: 24px;
-    font-weight: bold;
-  }
-
-  .button {
-    padding: 8px 16px;
-    border: none;
-    border-radius: 4px;
-  }
-
-  .primary {
-    background-color: #007bff;
-    color: white;
-  }
-
-  /* 케밥케이스 클래스명 예시 */
-  .button-large {
-    padding: 12px 24px;
-    font-size: 18px;
-    border-radius: 6px;
-  }
-
-  .text-warning {
-    color: #ff6b35;
-    font-weight: bold;
-    font-size: 14px;
+  ._container_wilky_3 {
+    width: 300px;
+    margin: 10px auto;
   }
   ```
 
+* 번들링시 컴포넌트의 class 참조에 해시값이 자동으로 추가
 * App.tsx
   ```tsx
+  <div class="_container_wilky_3">
+    ...
+  </div>
+  ```
+
+### 2.2.4 스타일 적용 예시
+* App.tsx
+  ```tsx
+  import styles from './App.module.css';
   function App(){
     return (
       <>
-        <h1 className={styles.title}>CSS 모듈 사용</h1>
-        <button className={styles.button}>기본 버튼</button>
-        <button className={`${styles.button} ${styles.primary}`}>프라이머리 버튼</button>
-        <button className={styles['button-large']}>큰 버튼</button>
-        <p className={styles['text-warning']}>경고 텍스트</p>
+        <h1>CSS 모듈 사용</h1>
+        <div className={styles.container}>
+          <button type="button">기본 버튼</button>
+          <button type="button" className={styles['bg-blue-text-red']}>파란 배경의 빨간 버튼</button>
+          <button type="button" className={styles['bg-yellow-text-red']}>노란 배경의 빨간 버튼</button>
+          <button type="button" className={styles['bg-gray-text-blue']}>회색 배경의 파란 버튼</button>
+        </div>
       </>
     );
   }
@@ -123,22 +145,22 @@ import styles from './App.module.css';
   ```tsx
   import styled from 'styled-components';
 
-  const StyledButton = styled.button`
-    background-color: ${ props => props['backgroundColor'] || 'white' };
+  const BasicButtonStyle = styled.button<ButtonProps>`
+    background-color: ${ (props) => props.bg || 'gray' };
     border: none;
     color: ${ props => props.color || 'black' };
     padding: 6px 18px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: ${ props => props.size || '16px' };
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 6px;
   `;
 
   function Button({ children, ...rest }){
-    return <StyledButton { ...rest }>{ children }</StyledButton>
+    return <BasicButtonStyle { ...rest }>{ children }</BasicButtonStyle>
   }
 
   export default Button;

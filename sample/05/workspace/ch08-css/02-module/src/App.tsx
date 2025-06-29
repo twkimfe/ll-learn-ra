@@ -6,7 +6,7 @@ function App(){
       <h1 className="bg-gray-text-blue">02 CSS Module</h1>
 
       <div className="container">
-        <button type="button">그냥 버튼</button>
+        <button type="button">기본 버튼</button>
         <button type="button" className="bg-blue-text-red">파란 배경의 빨간 버튼</button>
         <button type="button" className="bg-yellow-text-red">노란 배경의 빨간 버튼</button>
         <button type="button" className="bg-gray-text-blue">회색 배경의 파란 버튼</button>

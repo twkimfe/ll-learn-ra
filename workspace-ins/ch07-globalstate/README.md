@@ -170,7 +170,7 @@ npm i jotai
   import { useAtomValue } from 'jotai';
 
   function Left3() {
-    const count = useAtomValue<number>(countAtom);
+    const count = useAtomValue(countAtom);
     return (
       <div>
         <h3>Left3</h3>
