@@ -467,6 +467,64 @@
   * 🔊 [3.5 React Query(TanStack Query)](./workspace-ins/ch09-ajax#35-react-querytanstack-query)
     - 🧑‍💻 [03 React Query 라이브러리](./workspace-ins/ch09-ajax/03-board-reactquery)
     
+### 19일차(2025.06.25 수)
+#### 오전(3시간)
+* 🔊 [3.3.5 인터셉터](./workspace-ins/ch09-ajax#335-인터셉터)
+  - 🧑‍💻 [02 Axios 라이브러리](./workspace-ins/ch09-ajax/01-board-axios)
+
+* 🔊 [6장 Context API](./workspace-ins/ch06-contextapi)
+  * 🔊 [1. Context API란?](./workspace-ins/ch06-contextapi#1-context-api란)
+    - 🧑‍💻 [01 Prop Drilling](./workspace-ins/ch06-contextapi/01-prop-drilling)
+  * 🔊 [2. 사용 방법](./workspace-ins/ch06-contextapi#2-사용-방법)
+    - 🧑‍💻 [02 Context API - useContext 훅](./workspace-ins/ch06-contextapi/02-useContext)
+
+#### 오후(4시간 20분)
+  * 🔊 [2.3.2 use 훅 사용 (React 19 신규 기능)](./workspace-ins/ch06-contextapi#232-use-훅-사용-react-19-신규-기능)
+    - 🧑‍💻 [03 Context API - use 훅](./workspace-ins/ch06-contextapi/03-use)
+
+* 🔊 [7장 전역 상태 관리](./workspace-ins/ch07-globalstate#7장-전역-상태-관리)
+  * 🔊 [2. Redux](./workspace-ins/ch07-globalstate#2-redux)
+    - 🧑‍💻 [01 Redux](./workspace-ins/ch07-globalstate/01-redux)
+
+### 20일차(2025.06.26 목)
+#### 오전(3시간)
+  * 🔊 [3. Jotai](./workspace-ins/ch07-globalstate#3-jotai)
+    - 🧑‍💻 [02 Jotai](./workspace-ins/ch07-globalstate/02-jotai)
+  * 🔊 [4. Zustand](./workspace-ins/ch07-globalstate#4-zustand)
+    - 🧑‍💻 [03 Zustand](./workspace-ins/ch07-globalstate/03-zustand)
+
+#### 오후(4시간)
+* 🔊 [8장 리액트에서 CSS 사용](./workspace-ins/ch08-css#8장-리액트에서-css-사용)
+  * 🔊 [1 기본 CSS 적용 방법](./workspace-ins/ch08-css#1-기본-css-적용-방법)
+    - 🧑‍💻 [01 바닐라 CSS](./workspace-ins/ch08-css/01-css)
+  * 🔊 [2 CSS 모듈](./workspace-ins/ch08-css#2-css-모듈)
+    - 🧑‍💻 [02 CSS Module](./workspace-ins/ch08-css/02-module)
+  * 🔊 [3 CSS-in-JS](./workspace-ins/ch08-css#3-css-in-js)
+    - 🧑‍💻 [03 Styled Components](./workspace-ins/ch08-css/03-styled)
+  * 🔊 [4 Tailwind CSS](./workspace-ins/ch08-css#4-tailwind-css)
+    - 🧑‍💻 [04 Tailwind CSS](./workspace-ins/ch08-css/04-twilwind)
+
+### 21일차(2025.06.30 월)
+#### 오전(3시간)
+* 🔊 [10장 Next.js](./workspace-ins/ch10-nextjs#10장-nextjs)
+  * 🔊 [1 Next.js 개요](./workspace-ins/ch10-nextjs#1-nextjs-개요)
+* 5장 리액트 라우터
+  * 🔊 [7. 레이지 로딩 (lazy loading)](./workspace-ins/ch05-router#7-레이지-로딩-lazy-loading)
+    - 🧑‍💻 [05 리액트 라우터 적용](./workspace-ins/ch12-app/todolist/05-router)
+  * 🔊 [8. React.Suspense 컴포넌트](./workspace-ins/ch05-router#8-reactsuspense-컴포넌트)
+    - 🧑‍💻 [04 React Query(TanStack Query) + Suspense](./workspace-ins/ch09-ajax/04-board-suspense)
+* 10장 Next.js
+  * 🔊 [2 개발환경 구성](./workspace-ins/ch10-nextjs#2-개발환경-구성)
+    - 🧑‍💻 [01 개발환경 수동 구성](./workspace-ins/ch10-nextjs/01-manual)
+    - 🧑‍💻 [02 개발환경 자동 구성 - catete-next-app](./workspace-ins/ch10-nextjs/01-cra)
+
+#### 오후(3시간)
+  * [3 프로젝트 구조](./workspace-ins/ch10-nextjs#3-프로젝트-구조)
+  * [4 라우팅](./workspace-ins/ch10-nextjs#4-라우팅)
+    * [4.5.1 Link 컴포넌트](./workspace-ins/ch10-nextjs#451-link-컴포넌트)
+      - 🧑‍💻 [02 개발환경 자동 구성 - catete-next-app](./workspace-ins/ch10-nextjs/01-cra)
+
+      
 # 5. 참고 사이트
 
 ## 초보자를 위한 리액트
