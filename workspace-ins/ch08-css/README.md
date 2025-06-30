@@ -221,7 +221,7 @@ export default defineConfig({
   - VSCode에서 tainwindcss 관련 자동 완성, 구문 강조, 린팅 같은 기능 제공
   - 마우스 오버시 실제 적용되는 CSS가 툴팁으로 표시
 
-### 3.4.5 사용 예시
+### 4.3.5 사용 예시
 ```tsx
 function Button({ children, type="button", color='blue', size='md', ...rest }){
   let btnColor = {
