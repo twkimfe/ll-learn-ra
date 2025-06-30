@@ -502,7 +502,7 @@
   * 🔊 [3 CSS-in-JS](./workspace-ins/ch08-css#3-css-in-js)
     - 🧑‍💻 [03 Styled Components](./workspace-ins/ch08-css/03-styled)
   * 🔊 [4 Tailwind CSS](./workspace-ins/ch08-css#4-tailwind-css)
-    - 🧑‍💻 [04 Tailwind CSS](./workspace-ins/ch08-css/04-twilwind)
+    - 🧑‍💻 [04 Tailwind CSS](./workspace-ins/ch08-css/04-tailwind)
 
 ### 21일차(2025.06.30 월)
 #### 오전(3시간)
@@ -524,7 +524,7 @@
     * [4.5.1 Link 컴포넌트](./workspace-ins/ch10-nextjs#451-link-컴포넌트)
       - 🧑‍💻 [02 개발환경 자동 구성 - catete-next-app](./workspace-ins/ch10-nextjs/01-cra)
 
-      
+
 # 5. 참고 사이트
 
 ## 초보자를 위한 리액트
