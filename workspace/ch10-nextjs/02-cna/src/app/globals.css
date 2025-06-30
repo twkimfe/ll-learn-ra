@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* Tailwind CSS의 커스텀 컴포넌트 클래스 정의 */
+@layer components {
+  .cs-active {
+    @apply text-orange-500;
+  }
+}
