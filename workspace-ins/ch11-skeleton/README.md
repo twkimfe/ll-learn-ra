@@ -23,7 +23,7 @@
 * http://127.0.0.1:8080
 
 ## 프로젝트 생성
-* 03.React/workspace/ch11-skeleton 에서 실행
+* React/workspace/ch11-skeleton 에서 실행
   ```sh
   npx create-next-app@latest
   ```
@@ -223,6 +223,7 @@ npm start
 
 * JSX 문법에 맞춰서 수정
   - `class` -> `className`
+  - `datetime` -> `dateTime`
   - `rows="3"` -> `rows={3}`
   - `cols="40"` -> `cols={40}`
 
