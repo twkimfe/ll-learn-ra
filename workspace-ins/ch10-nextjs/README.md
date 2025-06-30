@@ -53,9 +53,9 @@
 ### 2.1.1 package.json 파일 작성
 #### 생성
 ```sh
-cd workspace/ch10-nextjs
-mkdir 01-manual
-cd 01-manual
+cd workspace
+mkdir -p ch10-nextjs/01-manual
+cd ch10-nextjs/01-manual
 npm init -y
 ```
 
@@ -84,10 +84,7 @@ npm install next@latest react@latest react-dom@latest
 * pages 디렉토리: Pages 라우터 사용
 
   ```sh
-  # MAC, Git Bash
   mkdir -p src/app
-  # Windows(cmd)
-  mkdir src/app
   ```
 
 <img src="https://raw.githubusercontent.com/FEBC-13/React/refs/heads/main/images/nextjs/app-getting-started.png">
