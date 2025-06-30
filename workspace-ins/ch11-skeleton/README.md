@@ -7,13 +7,13 @@
 
 ## 샘플 코드 테스트
 ### 샘플 코드 복사
-* 레포지토리 루트(03.React)에서 실행
+* 레포지토리 루트 폴더(React)에서 실행
   ```sh
   cp -r sample/06/workspace/ch11-skeleton/lion-board-template workspace/ch11-skeleton/lion-board-template
   ```
 
 ### 샘플 코드 실행
-* 레포지토리 루트(03.React)에서 실행
+* 레포지토리 루트 폴더(React)에서 실행
   ```sh
   cd workspace/ch11-skeleton
   npx live-server lion-board-template
