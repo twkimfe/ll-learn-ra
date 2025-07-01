@@ -30,6 +30,7 @@ export function generateStaticParams() {
 export default async function InfoPage({ params }: { params: Promise<{ id: string }> }) {
   const pageParams = await params;
   console.log('pageParams', pageParams);
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   return (
     <h1>상세 조회 - { pageParams.id }번 게시물</h1>
   );
