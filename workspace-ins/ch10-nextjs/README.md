@@ -357,16 +357,16 @@ npm run dev
 
 ### 4.4.2 레이아웃
 * 레이아웃 파일이 있는 경로와 하위 경로의 page를 보여줄때 사용하는 공통의 UI 정의
-  - `<html>` `<body>` 태그 필수로 작성
   - page 파일을 `{ children }` 으로 래핑
-* 루트 레이아웃(`app/layout.tsx`) 필수
 * 하위 폴더의 layout과 중첩됨
 * `layout.js`, `layout.jsx`, `layout.ts`, `layout.tsx`로 작성
 
 #### 루트 레이아웃
 * app 폴더 하위에 만들어야 하는 필수 layout 파일
+  * `app/layout.tsx`
 * 모든 경로에 적용할 공통 UI 작성
 * 루트 레이아웃에만 html, body 태그 포함 가능
+  - `<html>` `<body>` 태그 필수로 작성
 * page 컴포넌트를 children prop으로 받음
 
 * `app/layout.tsx`
