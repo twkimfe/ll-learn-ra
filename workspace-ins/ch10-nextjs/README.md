@@ -432,7 +432,7 @@ npm run dev
 ### 4.4.3 메타데이터
 * layout, page에서 metadata 변수나 generateMetadata 함수를 내보내기 하면 메타데이터 정의 가능
   - metadata: 정적인 메타데이터 출력
-  - generatrMetadata: 동적이 메타데이터 출력
+  - generateMetadata: 동적이 메타데이터 출력
 
 #### 메타데이터와 SEO
 * layout, page에서 metadata 변수나 generateMetadata 함수를 내보내기 하면 메타데이터 정의 가능
