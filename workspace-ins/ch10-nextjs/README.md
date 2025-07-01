@@ -822,7 +822,7 @@ export async function createPost(formData) {
   │   ├──(user)/
   │   │   ├── login/
   │   │   │   └── page.tsx
-  │   │   ├── login/
+  │   │   ├── signup/
   │   │   │   └── page.tsx
   ```
 
