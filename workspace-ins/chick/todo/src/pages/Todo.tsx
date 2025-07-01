@@ -34,14 +34,15 @@ function Todo() {
   // 완료/미완료 처리
   const toggleDone = (_id: number) => {
     console.log(`${_id} 완료/미완료 처리`);
-    
+    const newItemList = itemList.map(item => item._id === _id ? { ...item, done: !item.done } : item );
+    setItemList(newItemList);
   };
 
   return (
     <div id="main">
       <h2>할일 목록</h2>
       <TodoInput addItem={ addItem } />
-      <TodoList itemList={ itemList } deleteItem={ deleteItem } />
+      <TodoList itemList={ itemList } deleteItem={ deleteItem } toggleDone={ toggleDone } />
     </div>
   );
 }

@@ -23,7 +23,7 @@
 * http://127.0.0.1:8080
 
 ## 프로젝트 생성
-* 03.React/workspace/ch11-skeleton 에서 실행
+* React/workspace/ch11-skeleton 에서 실행
   ```sh
   npx create-next-app@latest
   ```
@@ -42,35 +42,13 @@
   - Turbopack: 기존 Webpack 대신 사용하는 고성능 번들러
 * Would you like to customize the import alias (@/* by default)? __✅No__ / Yes
 
-## 개발 서버 구동
-```sh
-npm run dev
-```
-
-### 테스트
-* http://localhost:3000 접속
-
-## 운영 서버 구동
-### 프로젝트 빌드
-```sh
-npm run build
-```
-
-### 서버 구동
-```sh
-npm start
-```
-
-### 테스트
-* http://localhost:3000 접속
-
-
 ## 불필요한 파일 정리
 * ch11-skeleton/lion-board-01/src 하위 파일 정리
   - favicon.ico 삭제
   - layout.tsx 삭제
   - page.tsx 삭제
   - global.css 파일 내용을 tailwindcss import 구문만 남기고 제거
+  
     ```css
     @import "tailwindcss";
     ```
@@ -223,6 +201,7 @@ npm start
 
 * JSX 문법에 맞춰서 수정
   - `class` -> `className`
+  - `datetime` -> `dateTime`
   - `rows="3"` -> `rows={3}`
   - `cols="40"` -> `cols={40}`
 

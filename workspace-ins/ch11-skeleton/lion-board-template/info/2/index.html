@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/images/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>React란? - Lion Board</title>
+    <title>Next.js란? - Lion Board</title>
 
     <meta name="description" content="다양한 주제의 커뮤니티와 활발한 소통을 위한 플랫폼입니다. 관심사에 따라 참여하고, 의견을 나누세요." />
     <meta name="keywords" content="커뮤니티, 소통, 포럼, 관심사, 온라인 모임, 커뮤니티 서비스" />
     <meta name="author" content="Front-End Boot Camp" />
 
-    <meta property="og:title" content="React란?" />
-    <meta property="og:description" content="React는 UI를 구성하기 위한 JavaScript 라이브러리로..." />
+    <meta property="og:title" content="Next.js란?" />
+    <meta property="og:description" content="Next.js는 React 기반의 풀스택 웹 프레임워크로..." />
     <meta property="og:image" content="/images/front-end.png" />
     <meta property="og:url" content="https://lion-board.vercel.app" />
     <meta property="og:type" content="website" />
@@ -37,16 +37,24 @@
               <ul class="flex items-center gap-6 uppercase">
                 <li class="hover:text-amber-500 hover:font-semibold"><a href="/info">정보공유</a></li>
                 <li class="hover:text-amber-500 hover:font-semibold"><a href="/info">자유게시판</a></li>
-                <li class="hover:text-amber-500 hover:font-semibold"><a href="/info">질문게시판</a></li>
+                <li class="hover:text-amber-500 a:font-semibold"><a href="/info">질문게시판</a></li>
               </ul>
             </div>
 
             <div class="w-1/2 order-1 flex justify-end items-center md:order-2 md:w-auto">
 
-              <div class="flex justify-end">
-                <a href="/user/login" class="bg-orange-500 py-1 px-2 text-sm text-white font-semibold ml-2 hover:bg-amber-400 rounded">로그인</a>
-                <a href="/user/signup" class="bg-gray-900 py-1 px-2 text-sm text-white font-semibold ml-2 hover:bg-amber-400 rounded">회원가입</a>
-              </div>
+              <form action="/">
+                <p class="flex items-center">
+                  <img 
+                    class="w-8 rounded-full mr-2" 
+                    src="https://fesp-api.koyeb.app/market/files/openmarket/user-muzi.png"
+                    width="32"
+                    height="32"
+                    alt="용쌤 프로필 이미지" />
+                  용쌤님 :)
+                  <button type="submit" class="bg-gray-900 py-1 px-2 text-sm text-white font-semibold ml-2 hover:bg-amber-400 rounded">로그아웃</button>
+                </p>
+              </form>
 
               <button
                 type="button"
@@ -55,7 +63,7 @@
               >
                 <svg
                   data-toggle-icon="moon"
-                  class="w-3.5 h-3.5 hidden"
+                  class="w-3.5 h-3.5"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -65,7 +73,7 @@
                 </svg>
                 <svg
                   data-toggle-icon="sun"
-                  class="w-3.5 h-3.5"
+                  class="w-3.5 h-3.5 hidden"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="currentColor"
@@ -80,96 +88,13 @@
           </nav>
         </header>
 
-        <main class="flex-1 container mx-auto mt-4 px-4">
-
-          <section class="mb-8 p-4">
-            <form action="/info">
-            <div class="font-semibold text-xl">제목 : React란?</div>
-              <div class="text-right text-gray-400">
-                <div>작성자 : 액션핑</div>
-                <div>2025.06.30 14:00:00</div>
-              </div>
-              <div class="mb-4">
-                <div>
-                  <p class="w-full p-2 whitespace-pre-wrap">React는 UI를 구성하기 위한 JavaScript 라이브러리로, 컴포넌트 기반 구조를 사용해 재사용성과 유지보수성이 뛰어납니다.<br />상태 관리와 가상 DOM을 통해 사용자와 빠르게 상호작용하는 동적 웹 앱을 만들 수 있습니다.</p>
-                </div>
-                <hr/>
-              </div>
-              <div class="flex justify-end my-4">
-                <a href="/info" class="bg-orange-500 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded">목록</a>
-                <a href="/info/1/edit" class="bg-gray-900 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded">수정</a>
-                <button type="submit" class="bg-red-500 py-1 px-4 text-base text-white font-semibold ml-2 hover:bg-amber-400 rounded">삭제</button>
-              </div>
-            </form>
-          </section>
-         
-          <section class="mb-8">
-            <h4 class="mt-8 mb-4 ml-2">댓글 2개</h4>
-
-            <div class="shadow-md rounded-lg p-4 mb-4">
-              <div class="flex justify-between items-center mb-2">
-                <div class="flex items-center">
-                  <img
-                    class="w-8 mr-2 rounded-full"
-                    src="https://fesp-api.koyeb.app/market/files/openmarket/user-muzi.png"
-                    alt="어피치 프로필 이미지"
-                  />
-                  <a href="" class="text-orange-400">어피치</a>
-                </div>
-                <time class="text-gray-500" datetime="2025.06.30 14:11:22">2025.06.30 14:11:22</time>
-              </div>
-              <div class="flex justify-between items-start mb-2">
-                <p class="whitespace-pre-wrap text-sm flex-1">아는 내용이구만...</p>
-                <form action="#" class="inline ml-2">
-                  <button type="submit" class="bg-red-500 py-1 px-2 text-sm text-white font-semibold ml-2 hover:bg-amber-400 rounded">삭제</button>
-                </form>
-              </div>
-            </div>
-
-            <div class="shadow-md rounded-lg p-4 mb-4">
-              <div class="flex justify-between items-center mb-2">
-                <div class="flex items-center">
-                  <img
-                    class="w-8 mr-2 rounded-full"
-                    src="https://fesp-api.koyeb.app/market/files/openmarket/user-muzi.png"
-                    alt="무지 프로필 이미지"
-                  />
-                  <a href="" class="text-orange-400">무지</a>
-                </div>
-                <time class="text-gray-500" datetime="2025.06.30 15:11:22">2025.06.30 15:11:22</time>
-              </div>
-              <div class="flex justify-between items-start mb-2">
-                <p class="whitespace-pre-wrap text-sm flex-1">와~ 신세계네요...</p>
-                <form action="#" class="inline ml-2">
-                  <button type="submit" class="bg-red-500 py-1 px-2 text-sm text-white font-semibold ml-2 hover:bg-amber-400 rounded">삭제</button>
-                </form>
-              </div>
-            </div>
-
-            <div class="p-4 border border-gray-200 rounded-lg">
-              <h4 class="mb-4">새로운 댓글을 추가하세요.</h4>
-              <form action="#">
-                <div class="mb-4">
-                  <textarea
-                    rows="3"
-                    cols="40"
-                    class="block p-2 w-full text-sm border rounded-lg border-gray-300 bg-gray-50 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
-                    placeholder="내용을 입력하세요."
-                    name="comment"></textarea>
-        
-                  <p class="ml-2 mt-1 text-sm text-red-500">
-                    내용은 필수입니다.
-                  </p>
-                  
-                </div>
-                <button type="submit" class="bg-orange-500 py-1 px-4 text-sm text-white font-semibold ml-2 hover:bg-amber-400 rounded">댓글 등록</button>
-              </form>
-            </div>
-      
-          </section>
-
-
-        </main>
+        <!-- 메인 영역 로딩중 -->
+        <div class="flex flex-1 items-center justify-center" style="height: 300px">
+          <div class="text-center">
+            <h3 class="mb-4 text-lg font-semibold">잠시만 기다려주세요.</h3>
+            <span>로딩중...</span>
+          </div>
+        </div>
         
         <footer class="p-4 pb-12 w-full border-t border-t-slate-200  dark:border-t-slate-500 dark:bg-gray-600 text-gray-600 dark:text-white transition-color duration-500 ease-in-out">
           <div class="min-w-[320px] flex flex-wrap gap-4 justify-center items-center text-sm text-slate-400">
