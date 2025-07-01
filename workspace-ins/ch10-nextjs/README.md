@@ -748,7 +748,7 @@ export async function createPost(formData) {
   - app/posts/[id]/[slug]/page.tsx
     + /posts/1/likes -> { id: '1', slug: 'likes' }
     + /posts/2/likes -> { id: '2', slug: 'likes' }
-    + /posts/2/favorites -> { id: '1', slug: 'favorites' }
+    + /posts/2/favorites -> { id: '2', slug: 'favorites' }
   - app/posts/[id]/[slug]/[sid]/page.tsx
     + /posts/3/likes/4 -> { id: '3', slug: 'likes', sid: '4' }
     + /posts/3/favorites/4 -> { id: '3', slug: 'favorites', sid: '4' }
