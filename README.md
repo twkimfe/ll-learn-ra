@@ -522,7 +522,7 @@
   * [3 프로젝트 구조](./workspace-ins/ch10-nextjs#3-프로젝트-구조)
   * [4 라우팅](./workspace-ins/ch10-nextjs#4-라우팅)
     * [4.5.1 Link 컴포넌트](./workspace-ins/ch10-nextjs#451-link-컴포넌트)
-      - 🧑‍💻 [02 개발환경 자동 구성 - catete-next-app](./workspace-ins/ch10-nextjs/01-cra)
+      - 🧑‍💻 [02 개발환경 자동 구성 - catete-next-app](./workspace-ins/ch10-nextjs/01-cna)
 
 
 # 5. 참고 사이트
