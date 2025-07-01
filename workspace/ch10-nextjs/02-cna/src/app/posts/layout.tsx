@@ -11,6 +11,7 @@ export default function RootLayout({
         <ul className="space-y-2">
           <li><Link href="/posts" className="block hover:bg-gray-700 p-2 rounded">목록 조회</Link></li>
           <li><Link href="/posts/new" className="block hover:bg-gray-700 p-2 rounded">글쓰기</Link></li>
+          <li><Link href="/posts/new" className="block hover:bg-gray-700 p-2 rounded">`${ }번 게시물`</Link></li>
         </ul>
       </aside>
       <main className="flex-1 p-6 bg-gray-100 overflow-y-auto">
