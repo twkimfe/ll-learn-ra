@@ -516,13 +516,13 @@
 * 10장 Next.js
   * 🔊 [2 개발환경 구성](./workspace-ins/ch10-nextjs#2-개발환경-구성)
     - 🧑‍💻 [01 개발환경 수동 구성](./workspace-ins/ch10-nextjs/01-manual)
-    - 🧑‍💻 [02 개발환경 자동 구성 - catete-next-app](./workspace-ins/ch10-nextjs/02-cra)
+    - 🧑‍💻 [02 개발환경 자동 구성 - catete-next-app](./workspace-ins/ch10-nextjs/02-cna)
 
 #### 오후(3시간)
   * [3 프로젝트 구조](./workspace-ins/ch10-nextjs#3-프로젝트-구조)
   * [4 라우팅](./workspace-ins/ch10-nextjs#4-라우팅)
     * [4.5.1 Link 컴포넌트](./workspace-ins/ch10-nextjs#451-link-컴포넌트)
-      - 🧑‍💻 [02 개발환경 자동 구성 - catete-next-app](./workspace-ins/ch10-nextjs/01-cna)
+      - 🧑‍💻 [02 개발환경 자동 구성 - catete-next-app](./workspace-ins/ch10-nextjs/02-cna)
 
 
 # 5. 참고 사이트

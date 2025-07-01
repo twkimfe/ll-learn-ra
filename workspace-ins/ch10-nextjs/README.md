@@ -357,16 +357,16 @@ npm run dev
 
 ### 4.4.2 레이아웃
 * 레이아웃 파일이 있는 경로와 하위 경로의 page를 보여줄때 사용하는 공통의 UI 정의
-  - `<html>` `<body>` 태그 필수로 작성
   - page 파일을 `{ children }` 으로 래핑
-* 루트 레이아웃(`app/layout.tsx`) 필수
 * 하위 폴더의 layout과 중첩됨
 * `layout.js`, `layout.jsx`, `layout.ts`, `layout.tsx`로 작성
 
 #### 루트 레이아웃
 * app 폴더 하위에 만들어야 하는 필수 layout 파일
+  * `app/layout.tsx`
 * 모든 경로에 적용할 공통 UI 작성
 * 루트 레이아웃에만 html, body 태그 포함 가능
+  - `<html>` `<body>` 태그 필수로 작성
 * page 컴포넌트를 children prop으로 받음
 
 * `app/layout.tsx`
@@ -432,7 +432,7 @@ npm run dev
 ### 4.4.3 메타데이터
 * layout, page에서 metadata 변수나 generateMetadata 함수를 내보내기 하면 메타데이터 정의 가능
   - metadata: 정적인 메타데이터 출력
-  - generatrMetadata: 동적이 메타데이터 출력
+  - generateMetadata: 동적이 메타데이터 출력
 
 #### 메타데이터와 SEO
 * layout, page에서 metadata 변수나 generateMetadata 함수를 내보내기 하면 메타데이터 정의 가능
@@ -748,7 +748,7 @@ export async function createPost(formData) {
   - app/posts/[id]/[slug]/page.tsx
     + /posts/1/likes -> { id: '1', slug: 'likes' }
     + /posts/2/likes -> { id: '2', slug: 'likes' }
-    + /posts/2/favorites -> { id: '1', slug: 'favorites' }
+    + /posts/2/favorites -> { id: '2', slug: 'favorites' }
   - app/posts/[id]/[slug]/[sid]/page.tsx
     + /posts/3/likes/4 -> { id: '3', slug: 'likes', sid: '4' }
     + /posts/3/favorites/4 -> { id: '3', slug: 'favorites', sid: '4' }
@@ -782,13 +782,13 @@ export async function createPost(formData) {
 
   ```tsx
   // 이 함수가 반환한 배열만큼 SSG 페이지를 미리 생성
-  // 빌드하면 .next/server/app/posts/1.html, 2.html, 4.html
+  // 빌드하면 .next/server/app/posts/1.html, 2.html, 3.html
   export function generateStaticParams() {
     // 공지글에 대한 fetch 작업
     const posts = [
       { id: '1', title: '1번 제목' },
       { id: '2', slug: '2', sid: '3', title: '2번 제목' },
-      { id: '4', slug: '2', sid: '3', title: '4번 제목' },
+      { id: '3', slug: '2', sid: '3', title: '4번 제목' },
     ];
 
     return posts;
@@ -809,7 +809,7 @@ export async function createPost(formData) {
   4. 브라우저가 posts/4 요청을 보내는 경우 정적 라우팅 테이블에 매칭되는 url이 없으므로 posts/[id]/page.tsx 파일을 실행하여 응답
 
 ## 4.7 라우트 그룹 및 프라이빗 폴더
-### 4.7.1 라우트 그룸
+### 4.7.1 라우트 그룹
 * app 라우터는 app 하위 폴더가 URL 경로에 매핑됨
 * 폴더가 URL 경로에 포함되지 않게 하고 싶을때 라우트 그룹을 생성
 * `(폴더명)` 처럼 폴더명에 `()`를 붙여서 작성
@@ -822,7 +822,7 @@ export async function createPost(formData) {
   │   ├──(user)/
   │   │   ├── login/
   │   │   │   └── page.tsx
-  │   │   ├── login/
+  │   │   ├── signup/
   │   │   │   └── page.tsx
   ```
 
