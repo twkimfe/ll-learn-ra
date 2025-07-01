@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-export default function RootLayout({
-  children,
+export default async function RootLayout({
+  children
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
 }) {
   return (
     <div className="flex flex-1 overflow-hidden">
