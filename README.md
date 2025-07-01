@@ -516,7 +516,7 @@
 * 10장 Next.js
   * 🔊 [2 개발환경 구성](./workspace-ins/ch10-nextjs#2-개발환경-구성)
     - 🧑‍💻 [01 개발환경 수동 구성](./workspace-ins/ch10-nextjs/01-manual)
-    - 🧑‍💻 [02 개발환경 자동 구성 - catete-next-app](./workspace-ins/ch10-nextjs/01-cra)
+    - 🧑‍💻 [02 개발환경 자동 구성 - catete-next-app](./workspace-ins/ch10-nextjs/02-cra)
 
 #### 오후(3시간)
   * [3 프로젝트 구조](./workspace-ins/ch10-nextjs#3-프로젝트-구조)
