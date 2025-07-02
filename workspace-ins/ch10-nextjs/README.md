@@ -731,7 +731,6 @@ export async function createPost(formData) {
   ```tsx
   export default async function InfoPage({ params }: { params: { id: string } }) {
     const { id } = await params; // Next.js 15 부터 params는 비동기 처리 필요
-    await new Promise(resolve => setTimeout(resolve, 1000*2));
     return (
       <h1>상세 조회 - { id }번 게시물</h1>
     );
