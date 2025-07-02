@@ -1,7 +1,6 @@
-'use server';
-import { PostInfoRes } from "@/types/board";
+'use server'; // 서버 액션
 
- // 서버 액션
+import { PostInfoRes } from "@/types/board";
 
 // 게시글 등록
 export async function createPost(prevState: PostInfoRes, formData: FormData){
