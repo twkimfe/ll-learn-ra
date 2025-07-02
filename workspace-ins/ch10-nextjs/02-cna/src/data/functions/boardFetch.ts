@@ -1,4 +1,4 @@
-'use server';
+'use server'; // 서버 함수
 
 import { Post } from "@/types/board";
 
