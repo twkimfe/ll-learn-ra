@@ -1117,13 +1117,14 @@ export function POST(request: NextRequest) {
 ### 6.1.1 클라이언트 컴포넌트
 * API 서버 직접 호출
 * route handler 호출
-  - router handler에서 API 서버 호출
+  - router handler에서 API 서버를 호출하거나 DB에서 작업하는 코드 개발
 * 서버 함수(서버 액션) 호출
-  - 서버 함수에서 API 서버 호출
+  - 서버 함수에서 API 서버 호출하거나 DB에서 작업하는 코드 개발
 
 ### 6.1.2 서버 컴포넌트
-* API 서버 호출
-* 백엔드 코드 직접 개발(풀스택)
+* API 서버 직접 호출
+* route handler 호출
+* 서버 함수(서버 액션) 호출
 
 ## 6.2 Next.js의 fetch 함수
 * fetch API를 확장
