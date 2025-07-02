@@ -1,12 +1,11 @@
-'use client '
 import { fetchPosts } from "@/data/functions/boardFetch";
+import { Metadata } from "next";
 import Link from "next/link";
 
-// import { Metadata } from "next";
-// export const metadata: Metadata = {
-//   title: '게시물 목록 조회',
-//   description: '게시물 목록 조회 페이지입니다.'
-// }
+export const metadata: Metadata = {
+  title: '게시물 목록 조회',
+  description: '게시물 목록 조회 페이지입니다.'
+}
 
 export default async function ListPage() {
   await new Promise((resolve)=> setTimeout(resolve, 2000));

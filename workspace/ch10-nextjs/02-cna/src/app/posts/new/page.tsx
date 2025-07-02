@@ -1,3 +1,4 @@
+import RegistForm from "@/app/posts/new/RegistForm";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,6 +8,9 @@ export const metadata: Metadata = {
 
 export default function NewPage() {
   return (
-    <h1>게시글 등록</h1>
+    <>
+      <h1>게시글 등록</h1>
+      <RegistForm />
+    </>
   );
 }
