@@ -1,13 +1,16 @@
+'use client';
+
 import { fetchPosts } from "@/data/functions/boardFetch";
 import { Post } from "@/types/board";
-import { Metadata } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-export const metadata: Metadata = {
-  title: '게시물 목록 조회',
-  description: '게시물 목록 조회 페이지입니다.'
-}
+
+// import { Metadata } from "next";
+// export const metadata: Metadata = {
+//   title: '게시물 목록 조회',
+//   description: '게시물 목록 조회 페이지입니다.'
+// }
 
 export default function ListPage() {
   const [ data, setData ] = useState<Post[] | null>(null);

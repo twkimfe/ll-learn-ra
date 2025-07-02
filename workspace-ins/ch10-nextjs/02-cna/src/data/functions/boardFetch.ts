@@ -1,3 +1,5 @@
+'use server';
+
 import { Post } from "@/types/board";
 
 export async function fetchPosts(): Promise<Post[]> {
@@ -8,5 +10,6 @@ export async function fetchPosts(): Promise<Post[]> {
     }
   });
   const data = await res.json();
+  console.log('boardFetch', data.item.length);
   return data.item;
 }
