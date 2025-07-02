@@ -5,9 +5,12 @@ export const metadata: Metadata = {
   title: '게시물 목록 조회',
   description: '게시물 목록 조회 페이지입니다.'
 }
-export default function ListPage() {
+export default async function ListPage() {
+
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  
   const dummyList = [];
-  for(let i=1; i<=1000; i++){
+  for(let i=1; i<=10; i++){
     dummyList.push({
       id: i,
       title: i + '번 게시물'
