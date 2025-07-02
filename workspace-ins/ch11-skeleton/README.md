@@ -594,7 +594,7 @@ export default async function InfoPage() {
 * app/info/2 폴더 삭제
 
 ### 3.1.2 게시물 목록 페이지
-* app/info 폴더명을 app/[type]으로 수정
+* app/info 폴더명을 app/[boardType]으로 수정
 * app/free 폴더 삭제
 
 #### 게시판 링크 수정
