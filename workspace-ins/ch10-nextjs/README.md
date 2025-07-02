@@ -1610,7 +1610,7 @@ export default function LikeButton({ initialLikes }) {
   ```
 
 ### 6.3.9 에러 처리
-* 에러가 발생하면 가까운 error.tsx나 `<Suspense>` 에서 처리됨
+* 에러가 발생하면 가까운 error.tsx 에서 처리됨
 * try/catch로 에러 처리를 권장
   ```tsx
   'use server'
