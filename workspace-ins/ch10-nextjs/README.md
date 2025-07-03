@@ -1937,6 +1937,9 @@ export default function DashboardLayout({
 ```
 
 ## 9.3 정적 컨텐츠
-* public 폴더 아래에 위치
+* public 폴더 아래에 위치하면 자동으로 최적화
 * public 폴더는 코드에서 '/'로 접근
-
+* 이미지 포맷 최적화
+* 폰트 최적화
+* 아이콘 최적화
+* 압축 및 캐싱 최적화
