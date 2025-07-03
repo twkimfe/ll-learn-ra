@@ -42,7 +42,7 @@ function Todo() {
     <div id="main">
       <h2>할일 목록</h2>
       <TodoInput addItem={ addItem } />
-      <TodoList itemList={ itemList } deleteItem={ deleteItem } toggleDone={ toggleDone } />
+      <TodoList deleteItem={ deleteItem } toggleDone={ toggleDone } />
     </div>
   );
 }

@@ -1,22 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAxiosInstance from "../hooks/useAxiosInstance";
 import TodoItem, { type TodoItem as TodoItemType } from "./TodoItem";
 
 interface TodoListPropType {
-  itemList: TodoItemType[];
   deleteItem: (_id: number) => void;
   toggleDone: (_id: number) => void;
 }
 
-function TodoList({ itemList, deleteItem, toggleDone }: TodoListPropType) {
+function TodoList({ deleteItem, toggleDone }: TodoListPropType) {
 
   const axiosInstance = useAxiosInstance();
 
+  const [ itemList, setItemList ] = useState<TodoItemType[]>([]);
+
   const fetchList = async () => {
     try{
-      const res = await axiosInstance.get('/todolist');
+      const res = await axiosInstance.get('/todolist'); // pending
       // fulfilled 상태
       console.log('서버의 응답', res);
+
+      setItemList(res.data.items);
 
     }catch(err){
       // rejected 상태
@@ -24,7 +27,9 @@ function TodoList({ itemList, deleteItem, toggleDone }: TodoListPropType) {
     }
   };
 
-  fetchList();
+  useEffect(() => {
+    fetchList();
+  }, []); // 마운트 된 후에 한번만 호출
 
   const liList = itemList.map((item) => {
     return (
