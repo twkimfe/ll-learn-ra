@@ -8,6 +8,10 @@ export async function fetchPosts(): Promise<Post[]> {
     headers: {
       'Client-Id': 'openmarket'
     },
+    next: {
+      tags: ['list', 'qna'],
+      revalidate: 10, // 60초 후에 자동으로 revalidate
+    },
     // cache: 'no-cache', // next 15 기본값
     cache: 'force-cache', // next 14 기본값(평생 캐시됨)
   });
