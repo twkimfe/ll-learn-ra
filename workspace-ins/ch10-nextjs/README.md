@@ -1940,8 +1940,3 @@ export default function DashboardLayout({
 * public 폴더 아래에 위치
 * public 폴더는 코드에서 '/'로 접근
 
-# 10 인증
-## 10.1 Authentication, 인증
-* 신원 확인
-* 아이디, 비밀번호로 로그인
-* 구글, 네이버, 카카오 로그인
