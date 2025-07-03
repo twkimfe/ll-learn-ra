@@ -1825,13 +1825,12 @@ const res = await fetch('https://api.example.com/posts', {
 <img src="https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Flight%2Fdata-cache.png&w=1920&q=75">
 
 ### 8.6.2 데이터 캐시와 fetch 메모이제이션의 차이점
-  - 둘다 프로덕션에서만 동작
-  - 데이터 캐시는 여러 요청에서 재사용 됨
-  - 메모이제이션은 컴포넌트 트리가 렌더링 되는 동안에만 재사용 됨
-    + 렌더링 될때 호출되는 여러 컴포넌트가 동일한 URL과 옵션으로 fetch 요청을 보내면 최초 요청의 응답을 저장하고 이후의 요청에는 저장된 응답이 사용된 후 렌더링이 끝나면 삭제됨
-  - 데이터 캐시는 비활성화 하거나 재검증 시 서버에 다시 요청
-  - 메모이제이션은 임시 캐시이므로 다음 렌더링 작업이 발생하면 항상 서버에 다시 요청
-  - 메모이제이션 -> 데이터 캐시 -> 데이터 소스 순으로 확인
+- 데이터 캐시는 여러 요청에서 재사용 됨
+- 메모이제이션은 컴포넌트 트리가 렌더링 되는 동안에만 재사용 됨
+  + 렌더링 될때 호출되는 여러 컴포넌트가 동일한 URL과 옵션으로 fetch 요청을 보내면 최초 요청의 응답을 저장하고 이후의 요청에는 저장된 응답이 사용된 후 렌더링이 끝나면 삭제됨
+- 데이터 캐시는 비활성화 하거나 재검증 시 서버에 다시 요청
+- 메모이제이션은 임시 캐시이므로 다음 렌더링 작업이 발생하면 항상 서버에 다시 요청
+- 메모이제이션 -> 데이터 캐시 -> 데이터 소스 순으로 확인
 
 <img src="https://nextjs.org/_next/image?url=https%3A%2F%2Fh8DxKfmAPhn8O0p3.public.blob.vercel-storage.com%2Fdocs%2Flight%2Frequest-memoization.png&w=1920&q=75">
 
