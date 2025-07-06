@@ -931,7 +931,7 @@ export default async function InfoPage() {
 
 ### 3.4.2 error
 #### 공통 에러 컴포넌트 작성
-* app/components/common/Error.tsx 파일 생성
+* src/components/common/Error.tsx 파일 생성
 
 * app/error.html 코드의 `<main>` 영역을 잘라서 Error의 리턴값으로 사용하고 남은 html 코드는 삭제
 
