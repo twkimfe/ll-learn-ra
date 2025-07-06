@@ -7,8 +7,13 @@ export async function fetchPosts(): Promise<Post[]> {
     headers: {
       'Client-Id': 'openmarket',
     },
+    // next: {
+    //   tags: ['list','3']
+    // },
+    // cache: 'no-cache', // next 15 기본값
+    // cache: 'force-cache', // next 14 기본값(과거 캐시로 렌더링)
   });
   const data = await res.json();
-
+  console.log('boardFetch', data.item.length);
   return data.item
 }

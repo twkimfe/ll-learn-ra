@@ -1,6 +1,8 @@
 'use server';
 
 import { PostInfoRes } from '@/types/board';
+// import { revalidatePath, revalidateTag } from 'next/cache';
+// import { redirect } from 'next/navigation';
 
 // 게시글 등록
 export async function createPost(prevState: PostInfoRes, formData: FormData) {
@@ -18,6 +20,12 @@ export async function createPost(prevState: PostInfoRes, formData: FormData) {
     },
   });
   const data = await res.json();
+
+  // if(data.ok) {
+  //   revalidatePath('/posts');
+  //   revalidateTag('/posts');
+  //   redirect('/posts')
+  // }
 
   return data;
 }
