@@ -2932,5 +2932,3 @@ export default function CommentNew({ _id }: { _id: string }) {
 
 ## 4.18 전체 기능 테스트
 
-## 4.14 완성된 코드 보기
-* []()
