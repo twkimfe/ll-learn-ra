@@ -1031,7 +1031,7 @@ src/
   ```
 
 * lion-board-03/src/components/common/Header.tsx 파일 수정
-  - `라이언 보드 v.03` -> `라이언 보드 v.03`
+  - `라이언 보드 v.02` -> `라이언 보드 v.03`
 
 ## 4.1 type 정의
 ### 4.1.1 유저 타입 정의
@@ -2931,4 +2931,6 @@ export default function CommentNew({ _id }: { _id: string }) {
 * 댓글 삭제 테스트
 
 ## 4.18 전체 기능 테스트
+* http://localhost:3000
+
 
