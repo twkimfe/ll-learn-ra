@@ -1063,32 +1063,6 @@ src/
   import { User } from "@/types/user";
 
   /**
-   * 게시글에 대한 답글(댓글) 정보를 나타내는 인터페이스
-   * Pick<T, K>:
-   * T 타입에서 K에 해당하는 속성만 선택해 새로운 타입을 만듭니다.
-   * 예시: Pick<User, '_id' | 'name' | 'image'>는 User 타입에서 _id, name, image만 포함하는 타입입니다.
-   */
-  export interface PostReply {
-    // 답글의 고유 ID
-    _id: number,
-    // 답글 작성자 정보 (id, 이름, 이미지)
-    user: Pick<User, '_id' | 'name' | 'image'>,
-    // 답글 내용
-    content: string,
-    // 답글의 좋아요 수
-    like: number,
-    // 답글 생성일
-    createdAt: string,
-    // 답글 수정일
-    updatedAt: string,
-  }
-
-  /**
-   * 답글 작성 폼에서 사용하는 타입 (content만 포함)
-   */
-  export type PostReplyForm = Pick<PostReply, 'content'>;
-
-  /**
    * 게시글 정보를 나타내는 인터페이스
    */
   export interface Post {
@@ -1125,6 +1099,32 @@ src/
     // 게시글 태그(쉼표로 구분된 문자열)
     tags?: string,
   }
+  
+  /**
+   * 게시글에 대한 답글(댓글) 정보를 나타내는 인터페이스
+   * Pick<T, K>:
+   * T 타입에서 K에 해당하는 속성만 선택해 새로운 타입을 만듭니다.
+   * 예시: Pick<User, '_id' | 'name' | 'image'>는 User 타입에서 _id, name, image만 포함하는 타입입니다.
+   */
+  export interface PostReply {
+    // 답글의 고유 ID
+    _id: number,
+    // 답글 작성자 정보 (id, 이름, 이미지)
+    user: Pick<User, '_id' | 'name' | 'image'>,
+    // 답글 내용
+    content: string,
+    // 답글의 좋아요 수
+    like: number,
+    // 답글 생성일
+    createdAt: string,
+    // 답글 수정일
+    updatedAt: string,
+  }
+
+  /**
+   * 답글 작성 폼에서 사용하는 타입 (content만 포함)
+   */
+  export type PostReplyForm = Pick<PostReply, 'content'>;
   ```
 
 ### 4.1.3 서버 응답 데이터 타입 정의
@@ -1132,6 +1132,7 @@ src/
 
   ```ts
   // 데이터 검증 실패 메세지
+  // https://fesp-api.koyeb.app/market/apidocs/#/%EA%B2%8C%EC%8B%9C%ED%8C%90/post_posts_ 의 입력값 검증 오류 항목 참고
   export interface ServerValidationError {
     type: string,
     value: string,
@@ -1640,6 +1641,7 @@ export default function CommentNew({ _id }: { _id: string }) {
    * @returns 파일 업로드 결과를 반환하는 Promise
    * @description
    * 파일을 서버에 업로드하고, 업로드된 파일 정보를 반환합니다.
+   * API 참고: https://fesp-api.koyeb.app/market/apidocs/#/%ED%8C%8C%EC%9D%BC/post_files_
    */
   export async function uploadFile(formData: FormData): ApiResPromise<FileUpload[]> {
     // 새로운 FormData 객체 생성 후 파일 추가
@@ -1699,6 +1701,7 @@ export default function CommentNew({ _id }: { _id: string }) {
       }
 
       // 회원가입 요청 바디 생성
+      // API 참고: https://fesp-api.koyeb.app/market/apidocs/#/%ED%9A%8C%EC%9B%90/post_users_
       const body = {
         type: formData.get('type') || 'user',
         name: formData.get('name'),
@@ -1771,7 +1774,7 @@ export default function CommentNew({ _id }: { _id: string }) {
 
   ```ts
   ...
-  images: { ... }
+  images: { ... },
   experimental: {
     serverActions: {
       bodySizeLimit: '10mb', // 서버액션에 전달하는 바디 크기(기본은 1MB)
